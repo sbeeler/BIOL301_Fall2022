@@ -50,12 +50,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
-    <link rel="prev" title="Markdown Files" href="markdown.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -115,20 +113,15 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Content with notebooks
+  <a class="reference internal" href="01_configuring_computer.html">
+   Week 1: Configuring your computer
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown-notebooks.html">
-   Notebooks with MyST Markdown
+  <a class="reference internal" href="01_intro_to_jupyter.html">
+   Week 1: Introduction to JupyterLab
   </a>
  </li>
 </ul>
@@ -439,56 +432,61 @@ For example, here’s some sample Matplotlib code:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key text.latex.preview in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 123 (&#39;text.latex.preview : False&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key mathtext.fallback_to_cm in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 155 (&#39;mathtext.fallback_to_cm : True  # When True, use symbols from the Computer Modern&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key savefig.jpeg_quality in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 418 (&#39;savefig.jpeg_quality: 95       # when a jpeg is saved, the default quality parameter.&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key savefig.frameon in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 421 (&#39;savefig.frameon : True&#39;)
 You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.4.2/matplotlibrc.template
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
 or from the matplotlib source distribution
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key verbose.level in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 472 (&#39;verbose.level  : silent      # one of silent, helpful, debug, debug-annoying&#39;)
 You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.4.2/matplotlibrc.template
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
 or from the matplotlib source distribution
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key verbose.fileo in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 473 (&#39;verbose.fileo  : sys.stdout  # a log filename, sys.stdout or sys.stderr&#39;)
 You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.4.2/matplotlibrc.template
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
 or from the matplotlib source distribution
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle: 
-The text.latex.preview rcparam was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key keymap.all_axes in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 490 (&#39;keymap.all_axes : a                 # enable all axes&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
+or from the matplotlib source distribution
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle: 
-The mathtext.fallback_to_cm rcparam was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key animation.avconv_path in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 501 (&#39;animation.avconv_path: avconv     # Path to avconv binary. Without full path&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
+or from the matplotlib source distribution
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle: Support for setting the &#39;mathtext.fallback_to_cm&#39; rcParam is deprecated since 3.3 and will be removed two minor releases later; use &#39;mathtext.fallback : &#39;cm&#39; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key animation.avconv_args in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 503 (&#39;animation.avconv_args:            # Additional arguments to pass to avconv&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.1/matplotlibrc.template
+or from the matplotlib source distribution
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle: 
-The validate_bool_maybe_none function was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle: 
-The savefig.jpeg_quality rcparam was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle: 
-The keymap.all_axes rcparam was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle: 
-The animation.avconv_path rcparam was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle: 
-The animation.avconv_args rcparam was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.pyplot._IonContext at 0x7f8c85684810&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.pyplot._IonContext at 0x7f8103f30b10&gt;
 </pre></div>
 </div>
 </div>
@@ -552,20 +550,6 @@ with your book. For more information about this, see <a class="reference externa
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="markdown.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Markdown Files</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="markdown-notebooks.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Notebooks with MyST Markdown</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
