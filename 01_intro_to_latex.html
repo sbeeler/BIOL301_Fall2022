@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 1: Introduction to LaTeX &#8212; BIOL301 Fall 2022 materials</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Week 1: Terminal Commands" href="01_terminal_commands.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/download.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">BIOL301 Fall 2022 materials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to the BIOL301 Webpage
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_configuring_computer.html">
+   Week 1: Configuring your computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro_to_jupyter.html">
+   Week 1: Introduction to JupyterLab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_terminal_commands.html">
+   Week 1: Terminal Commands
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 1: Introduction to LaTeX
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/01_intro_to_latex.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2F01_intro_to_latex.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/01_intro_to_latex.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-inline-latex">
+   Basic inline LaTeX
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-equations-on-separate-lines">
+   Displaying equations on separate lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fractions-and-an-example-of-fine-tuning">
+   Fractions (and an example of fine-tuning)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping-operators-and-more-fine-tuning">
+   Grouping operators (and more fine-tuning)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-latex-symbols">
+   Useful LaTeX symbols
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computing-environment">
+   Computing environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 1: Introduction to LaTeX</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-inline-latex">
+   Basic inline LaTeX
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-equations-on-separate-lines">
+   Displaying equations on separate lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fractions-and-an-example-of-fine-tuning">
+   Fractions (and an example of fine-tuning)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping-operators-and-more-fine-tuning">
+   Grouping operators (and more fine-tuning)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-latex-symbols">
+   Useful LaTeX symbols
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computing-environment">
+   Computing environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="week-1-introduction-to-latex">
+<h1>Week 1: Introduction to LaTeX<a class="headerlink" href="#week-1-introduction-to-latex" title="Permalink to this headline">#</a></h1>
+<hr/><p>In this tutorial, you will learn some of the basics on how to use <span class="math notranslate nohighlight">\(\LaTeX\)</span> to display equations in Jupyter notebooks.  For looking up symbols you may need, you can use any of the many <a class="reference external" href="http://users.dickinson.edu/~richesod/latex/latexcheatsheet.pdf">cheat sheets</a> you can find by asking Google.  I have provided a few that I think will come up the most often at the end of this tutorial.</p>
+<p>Whenever LaTeX expressions are showed, the raw Markdown/LaTeX is shown beneath it. (The word LaTeX is generally stylized as <span class="math notranslate nohighlight">\(\LaTeX\)</span>, but I get tired of reading that, so going forward, I will just write “LaTeX.”)</p>
+<section id="basic-inline-latex">
+<h2>Basic inline LaTeX<a class="headerlink" href="#basic-inline-latex" title="Permalink to this headline">#</a></h2>
+<p>To embed LaTeX within text, simply encapsulate the LaTeX portions in dollar signs (<code class="docutils literal notranslate"><span class="pre">$</span></code>).  MathJax takes care of the rest.  As an example, consider the sentence below and the markdown/LaTeX code to render it.</p>
+<p>Einstein told us that <span class="math notranslate nohighlight">\(E = mc^2\)</span>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Einstein told us that $E = mc^2$.
+</pre></div>
+</div>
+<p>Notice how the equation is properly rendered, with mathematical variables in italics.  Not also how <code class="docutils literal notranslate"><span class="pre">^2</span></code> was used to exponentiate.  If the exponential has more than one character in it, it should be enclosed in braces (<code class="docutils literal notranslate"><span class="pre">{}</span></code>).  In fact, braces are used to generally group symbols in LaTeX.</p>
+<p>Euler told us that <span class="math notranslate nohighlight">\(\mathrm{e}^{i \pi} - 1 = 0\)</span>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Euler told us that $\mathrm{e}^{i \pi} - 1 = 0$.
+</pre></div>
+</div>
+<p>Aside from the grouping braces, there are several other syntactical items of note.  First, notice that I made the special character <span class="math notranslate nohighlight">\(\pi\)</span> with <code class="docutils literal notranslate"><span class="pre">\pi</span></code>.  In general, a backward slash precedes special symbols or commands in LaTeX.  If we want another Greek letter, like <span class="math notranslate nohighlight">\(\theta\)</span>, we use <code class="docutils literal notranslate"><span class="pre">\theta</span></code>.  Now, also note that I used “<code class="docutils literal notranslate"><span class="pre">\mathrm{e}</span></code>” for the base of the natural logarithm.  I was signaling to LaTeX that I wanted the character written in Roman font, and not italics, so I used <code class="docutils literal notranslate"><span class="pre">\mathrm</span></code>.  Anything in the braces following the function <code class="docutils literal notranslate"><span class="pre">\mathrm</span></code> is rendered in Roman font.  Note the difference.</p>
+<p>This is <span class="math notranslate nohighlight">\(e\)</span>.  This is <span class="math notranslate nohighlight">\(\mathrm{e}\)</span>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This is $e$. This is $\mathrm{e}$.
+</pre></div>
+</div>
+<p>Now, back to grouping things in braces.  We can do similar groupings using braces with with subscripts.</p>
+<p>The dot product of two <span class="math notranslate nohighlight">\(n\)</span>-vectors is <span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^n a_i b_i\)</span>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The dot product of two $n$-vectors is $\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^n a_i b_i$.
+</pre></div>
+</div>
+<p>Here, I have used <code class="docutils literal notranslate"><span class="pre">$\mathbf{a}$</span></code> to make the character <code class="docutils literal notranslate"><span class="pre">a</span></code> boldface, denoting a vector.  Note that we denote subscripts with an underscore.  Notice also that the bounds of the sum use the same underscore and caret notation as for subscripts and superscripts.</p>
+</section>
+<section id="displaying-equations-on-separate-lines">
+<h2>Displaying equations on separate lines<a class="headerlink" href="#displaying-equations-on-separate-lines" title="Permalink to this headline">#</a></h2>
+<p>The bounds on the summation in the above example may look a little funny to you because they are not above and below the summation symbol.  This is because this particular equation is written inline.  If we had separated it from the text, it renders differently.</p>
+<p>We can make an equation appear centered on a new line, like</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^n a_i b_i.\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We can make an equation appear centered on a new line, like
+
+$$\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^n a_i b_i.$$
+</pre></div>
+</div>
+</section>
+<section id="fractions-and-an-example-of-fine-tuning">
+<h2>Fractions (and an example of fine-tuning)<a class="headerlink" href="#fractions-and-an-example-of-fine-tuning" title="Permalink to this headline">#</a></h2>
+<p>To display fractional quantities, we use the <code class="docutils literal notranslate"><span class="pre">\frac{}{}</span></code> command. <code class="docutils literal notranslate"><span class="pre">\frac</span></code> is always followed by two sets of braces; the numerator is contained in the first, and the denominator is contained in the second. As an example, we can write an equation known at Bayes’ Theorem.</p>
+<div class="math notranslate nohighlight">
+\[P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}$$
+</pre></div>
+</div>
+<p>The right hand side has a nicely-formatted fraction.  I did a little extra fine-tuning in this equation.  I’ll show the equation again without the fine-tuning, which used the <code class="docutils literal notranslate"><span class="pre">\mid</span></code> and <code class="docutils literal notranslate"><span class="pre">\,</span></code> commands.</p>
+<div class="math notranslate nohighlight">
+\[P(A | B) = \frac{P(B | A) P(A)}{P(B)}.\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$P(A | B) = \frac{P(B | A) P(A)}{P(B)}.$$
+</pre></div>
+</div>
+<p>First, the <code class="docutils literal notranslate"><span class="pre">\mid</span></code> command should be used in conditional probabilities.  Just using a vertical bar (<code class="docutils literal notranslate"><span class="pre">|</span></code>) results in crowding.  Similarly, I used the <code class="docutils literal notranslate"><span class="pre">\,</span></code> command to insert a little extra space between the two probabilities in the numerator.  This makes the equation a bit easier to read.  This <code class="docutils literal notranslate"><span class="pre">\,</span></code> operator is especially important when defining integrals.  We can put a little space between the <span class="math notranslate nohighlight">\(\mathrm{d}x\)</span> and the integrand.</p>
+<div class="math notranslate nohighlight">
+\[\text{good: } \int_0^{2\pi} \mathrm{d}x \, \sin x.\]</div>
+<div class="math notranslate nohighlight">
+\[\text{bad: } \int_0^{2\pi} \mathrm{d}x \sin x.\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$\text{good: } \int_0^{2\pi} \mathrm{d}x \, \sin x.$$
+    
+$$\text{bad: } \int_0^{2\pi} \mathrm{d}x \sin x.$$
+</pre></div>
+</div>
+<p>It is also very important to note that I used <span class="math notranslate nohighlight">\(\sin\)</span> and not <span class="math notranslate nohighlight">\(sin\)</span>.  Mathematical functions should be in Roman font and are invoked with a backslash.  Otherwise, the characters are interpreted as separate variables.  To be clear:</p>
+<div class="math notranslate nohighlight">
+\[\text{good: } \sin x.\]</div>
+<div class="math notranslate nohighlight">
+\[\text{bad: } sin x.\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$\text{good: } \sin x.$$
+
+$$\text{bad: } sin x.$$
+</pre></div>
+</div>
+<p>Finally, notice that I was able to put text in the equation like this: <code class="docutils literal notranslate"><span class="pre">\text{good:</span> <span class="pre">}</span></code>.</p>
+</section>
+<section id="grouping-operators-and-more-fine-tuning">
+<h2>Grouping operators (and more fine-tuning)<a class="headerlink" href="#grouping-operators-and-more-fine-tuning" title="Permalink to this headline">#</a></h2>
+<p>Compare the following equations.</p>
+<div class="math notranslate nohighlight">
+\[\text{good: } \sum_{i=1}^n i^3 = \left(\sum_{i=1}^n i\right)^2.\]</div>
+<div class="math notranslate nohighlight">
+\[\text{bad: } \sum_{i=1}^n i^3 = (\sum_{i=1}^n i)^2.\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$\text{good: } \sum_{i=1}^n i^3 = \left(\sum_{i=1}^n i\right)^2.$$
+
+$$\text{bad: }  \sum_{i=1}^n i^3 = (\sum_{i=1}^n i)^2.$$
+</pre></div>
+</div>
+<p>In the second equation, I did not use the <code class="docutils literal notranslate"><span class="pre">\left(</span></code> and <code class="docutils literal notranslate"><span class="pre">\right)</span></code> construction for parentheses and the result looks pretty awful.  In LaTeX, the height of anything that is encapsulated by <code class="docutils literal notranslate"><span class="pre">\left(</span></code> and <code class="docutils literal notranslate"><span class="pre">\right)</span></code> scales the parentheses appropriately.  You can use <code class="docutils literal notranslate"><span class="pre">\left</span></code> and <code class="docutils literal notranslate"><span class="pre">\right</span></code> with many symbols.  An important example is <code class="docutils literal notranslate"><span class="pre">\left\{</span></code>.  Note that to display braces in an equation, you have to use <code class="docutils literal notranslate"><span class="pre">\{</span></code> because just a plain brace (<code class="docutils literal notranslate"><span class="pre">{</span></code>) has a different meaning.</p>
+<p>(By the way, that equation is true, and pretty amazing.  It says that the sum of the first <span class="math notranslate nohighlight">\(n\)</span> <em>cubes</em> of integers is equal to the sum of the first <span class="math notranslate nohighlight">\(n\)</span> integers <em>squared</em>!)</p>
+<p>Finally, if you use <code class="docutils literal notranslate"><span class="pre">\left.</span></code> or <code class="docutils literal notranslate"><span class="pre">\right.</span></code>, LaTeX will simply scale the opposite symbol to match the height of the text, but will suppress printing the other. For example,</p>
+<div class="math notranslate nohighlight">
+\[\left. \frac{1}{x + 2} \right|_0^2 = -\frac{1}{4}.\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$\left. \frac{1}{x + 2} \right|_0^2 = -\frac{1}{4}.$$
+</pre></div>
+</div>
+<p>This is also useful if you are going to use <code class="docutils literal notranslate"><span class="pre">/</span></code> for a division operation. Compare the following.</p>
+<div class="math notranslate nohighlight">
+\[\text{good: } \left. x^2 \middle/ y^2 \right.\]</div>
+<div class="math notranslate nohighlight">
+\[\text{bad: } x^2 / y^2\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$\text{good: } \left. x^2 \middle/ y^2 \right.$$
+
+$$\text{bad: } x^2 / y^2$$
+</pre></div>
+</div>
+<p>Here, we used the <code class="docutils literal notranslate"><span class="pre">\middle</span></code> operator to scale the length of the division sign.</p>
+</section>
+<section id="useful-latex-symbols">
+<h2>Useful LaTeX symbols<a class="headerlink" href="#useful-latex-symbols" title="Permalink to this headline">#</a></h2>
+<p>Following is a list of some symbols you may find useful in this class.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>LaTeX</p></th>
+<th class="text-align:center head"><p>symbol</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\approx</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\approx\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\sim</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\sim\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\propto</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\propto\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\le</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\le\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ge</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\ge\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\pm</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\pm\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\in</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\in\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\ln</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\ln\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\exp</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\exp\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\prod_{i\in</span> <span class="pre">D}</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\({\displaystyle \prod_{i\in D}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\sum_{i\in</span> <span class="pre">D}</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\({\displaystyle \sum_{i\in D}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\frac{\mathrm{d}x}{\mathrm{d}t}}</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\({\displaystyle \frac{\mathrm{d} x}{\mathrm{d} t} }\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\sqrt{x}</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\sqrt{x}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\bar{x}</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\bar{x}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\dot{x}</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\dot{x}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\langle</span> <span class="pre">x</span> <span class="pre">\rangle</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\langle x \rangle\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\left\langle</span> <span class="pre">\frac{x}{y}</span> <span class="pre">\right\rangle</span></code></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\left\langle \frac{x}{y} \right\rangle\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="computing-environment">
+<h2>Computing environment<a class="headerlink" href="#computing-environment" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -v -p jupyterlab
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPython 3.7.13
+IPython 7.31.1
+
+jupyterlab 3.4.4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">#</a></h2>
+<p>Materials for this notebook were borrowed from © 2019 <a class="reference external" href="http://bois.caltech.edu/teaching.html">Justin Bois</a>, as licensed under a Creative Commons Attribution License CC-BY 4.0. All code contained herein is licensed under an MIT license.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01_terminal_commands.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 1: Terminal Commands</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dr. Suzannah Beeler<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
