@@ -1,0 +1,81 @@
+Traceback (most recent call last):
+  File "/Users/sbeeler/anaconda3/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/Users/sbeeler/anaconda3/lib/python3.7/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/sbeeler/anaconda3/lib/python3.7/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/sbeeler/anaconda3/lib/python3.7/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/sbeeler/anaconda3/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+  File "/Users/sbeeler/anaconda3/lib/python3.7/site-packages/nbclient/client.py", line 664, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/Users/sbeeler/anaconda3/lib/python3.7/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/sbeeler/anaconda3/lib/python3.7/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+from IPython.core.display import Image
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m/var/folders/7y/26f264rd4ldbcc1h172r7jkh0000gn/T/ipykernel_16487/1657144074.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mImage[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     40[0m [0;32mimport[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mconfig_init[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     41[0m [0;34m[0m[0m
+[0;32m---> 42[0;31m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mapi[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     43[0m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0msparse[0m[0;34m.[0m[0mapi[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     44[0m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mtseries[0m[0;34m.[0m[0mapi[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/api.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      5[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m [0;34m[0m[0m
+[0;32m----> 7[0;31m from pandas.core.arrays.integer import (
+[0m[1;32m      8[0m     [0mInt8Dtype[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m     [0mInt16Dtype[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/arrays/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0;34m.[0m[0marray_[0m [0;32mimport[0m [0marray[0m  [0;31m# noqa[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m from .base import (ExtensionArray,    # noqa
+[0m[1;32m      3[0m                    [0mExtensionOpsMixin[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m                    ExtensionScalarOpsMixin)
+[1;32m      5[0m [0;32mfrom[0m [0;34m.[0m[0mcategorical[0m [0;32mimport[0m [0mCategorical[0m  [0;31m# noqa[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/arrays/base.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     19[0m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mdtypes[0m[0;34m.[0m[0mmissing[0m [0;32mimport[0m [0misna[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     20[0m [0;34m[0m[0m
+[0;32m---> 21[0;31m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m [0;32mimport[0m [0mops[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     22[0m [0;34m[0m[0m
+[1;32m     23[0m [0m_not_implemented_message[0m [0;34m=[0m [0;34m"{} does not implement {}."[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/ops/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     19[0m [0;34m[0m[0m
+[1;32m     20[0m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m [0;32mimport[0m [0malgorithms[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 21[0;31m from pandas.core.ops.array_ops import (  # noqa:F401
+[0m[1;32m     22[0m     [0marithmetic_op[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     23[0m     [0mcomp_method_OBJECT_ARRAY[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/ops/array_ops.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     31[0m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mdtypes[0m[0;34m.[0m[0mmissing[0m [0;32mimport[0m [0misna[0m[0;34m,[0m [0mnotna[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     32[0m [0;34m[0m[0m
+[0;32m---> 33[0;31m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mconstruction[0m [0;32mimport[0m [0mensure_wrapped_if_datetimelike[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     34[0m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mops[0m [0;32mimport[0m [0mmissing[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     35[0m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mops[0m[0;34m.[0m[0mdispatch[0m [0;32mimport[0m [0mshould_extension_dispatch[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/construction.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     17[0m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0m_typing[0m [0;32mimport[0m [0mAnyArrayLike[0m[0;34m,[0m [0mArrayLike[0m[0;34m,[0m [0mDtype[0m[0;34m,[0m [0mDtypeObj[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     18[0m [0;34m[0m[0m
+[0;32m---> 19[0;31m [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mdtypes[0m[0;34m.[0m[0mbase[0m [0;32mimport[0m [0mExtensionDtype[0m[0;34m,[0m [0mregistry[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     20[0m from pandas.core.dtypes.cast import (
+[1;32m     21[0m     [0mconstruct_1d_arraylike_from_scalar[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: cannot import name 'registry' from 'pandas.core.dtypes.base' (/Users/sbeeler/anaconda3/lib/python3.7/site-packages/pandas/core/dtypes/base.py)
+ImportError: cannot import name 'registry' from 'pandas.core.dtypes.base' (/Users/sbeeler/anaconda3/lib/python3.7/site-packages/pandas/core/dtypes/base.py)
+

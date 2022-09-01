@@ -362,6 +362,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aligning-multiple-equations">
+   Aligning multiple equations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#useful-latex-symbols">
    Useful LaTeX symbols
   </a>
@@ -413,6 +418,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#grouping-operators-and-more-fine-tuning">
    Grouping operators (and more fine-tuning)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aligning-multiple-equations">
+   Aligning multiple equations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -547,6 +557,22 @@ $$\text{bad: } x^2 / y^2$$
 </pre></div>
 </div>
 <p>Here, we used the <code class="docutils literal notranslate"><span class="pre">\middle</span></code> operator to scale the length of the division sign.</p>
+</section>
+<section id="aligning-multiple-equations">
+<h2>Aligning multiple equations<a class="headerlink" href="#aligning-multiple-equations" title="Permalink to this headline">#</a></h2>
+<p>Repeatedly using the <code class="docutils literal notranslate"><span class="pre">$$</span></code> for every equation we write might get tedious, and it can also look bad aesthetically if the various equations are of different lengths. In these cases, we can instead use an <code class="docutils literal notranslate"><span class="pre">align</span></code> block, which looks like the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{align}
+    \mathbf{a} \cdot \mathbf{b} &amp;= \sum_{i=1}^n a_i b_i \\
+    &amp;= a_x b_x + a_y b_y + a_z b_z.
+\end{align}
+</pre></div>
+</div>
+<p>Unfortunately <code class="docutils literal notranslate"><span class="pre">align</span></code> blocks don’t display correctly on the website for some reason. <code class="docutils literal notranslate"><span class="pre">align</span></code> blocks <em>will</em> work in your personal notebooks however, and I recommend you use them!</p>
+<p>Some things to know about <code class="docutils literal notranslate"><span class="pre">align</span></code> blocks:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">\\</span></code> is how you indicate the start of a new line of math</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&amp;=</span></code> is used to align the two equation by the equals signs. Note that the ampersand itself is not actually displayed; it’s just how you tell LaTeX where to align the two equations.</p></li>
+</ul>
 </section>
 <section id="useful-latex-symbols">
 <h2>Useful LaTeX symbols<a class="headerlink" href="#useful-latex-symbols" title="Permalink to this headline">#</a></h2>
