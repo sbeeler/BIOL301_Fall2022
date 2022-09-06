@@ -346,27 +346,22 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Week 3: Numerical Integration
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#today-s-learning-objectives">
    Today’s Learning Objectives
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-euler-method">
    The Euler Method
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#improved-euler">
    Improved Euler
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fourth-order-runge-kutta-method">
    Fourth-Order Runge-Kutta Method
   </a>
@@ -390,27 +385,22 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Week 3: Numerical Integration
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#today-s-learning-objectives">
    Today’s Learning Objectives
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-euler-method">
    The Euler Method
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#improved-euler">
    Improved Euler
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fourth-order-runge-kutta-method">
    Fourth-Order Runge-Kutta Method
   </a>
@@ -427,9 +417,8 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="week-3-numerical-integration">
 <h1>Week 3: Numerical Integration<a class="headerlink" href="#week-3-numerical-integration" title="Permalink to this headline">#</a></h1>
-<hr/></section>
-<section class="tex2jax_ignore mathjax_ignore" id="today-s-learning-objectives">
-<h1>Today’s Learning Objectives<a class="headerlink" href="#today-s-learning-objectives" title="Permalink to this headline">#</a></h1>
+<hr/><section id="today-s-learning-objectives">
+<h2>Today’s Learning Objectives<a class="headerlink" href="#today-s-learning-objectives" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Implement the Euler Method for integrating exponential growth over time</p></li>
 <li><p>Explain the effect <span class="math notranslate nohighlight">\(\Delta t\)</span> has on the quality of the approximation</p></li>
@@ -437,8 +426,8 @@ title="Print to PDF"
 <li><p>Implement one higher order approximation of exponential growth and compare it to the Euler method</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="the-euler-method">
-<h1>The Euler Method<a class="headerlink" href="#the-euler-method" title="Permalink to this headline">#</a></h1>
+<section id="the-euler-method">
+<h2>The Euler Method<a class="headerlink" href="#the-euler-method" title="Permalink to this headline">#</a></h2>
 <p>Developing simple ways to solve ordinary differential equations has long been an area of intense research. While deriving the analytical solution may be simple in some cases, it is often useful to solve them numerically, especially if slamming out the analytical solution will give you carpal tunnel.</p>
 <p>While there are many ways to numerically integrate these equations, in this tutorial we will examine the Forward Euler method. Say we have an ordinary differential equation such as</p>
 <div class="math notranslate nohighlight">
@@ -548,8 +537,8 @@ title="Print to PDF"
 </div>
 <p>Nice! Our numerical integration and the known solution are so similar that the two lines can’t be distinguished from each other in the plot above. Recall how we said that picking a sufficiently small  <span class="math notranslate nohighlight">\(\Delta t\)</span>  is necessary for numerical integration to work? From here, it’s worth while to see how the plot above changes for different values of <code class="docutils literal notranslate"><span class="pre">dt</span></code>. As <code class="docutils literal notranslate"><span class="pre">dt</span></code> increases, our numerical integration deviates more and more from the known solution, with our integration systematically underestimating the true values. This is because with exponential growth, the rate of growth is always increasing and taking too large of a time step fails to capture this increase.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="improved-euler">
-<h1>Improved Euler<a class="headerlink" href="#improved-euler" title="Permalink to this headline">#</a></h1>
+<section id="improved-euler">
+<h2>Improved Euler<a class="headerlink" href="#improved-euler" title="Permalink to this headline">#</a></h2>
 <p>As discussed in Chapter 2.8 of Stogatz and as we saw above, Euler can result in inaccuracies as <span class="math notranslate nohighlight">\(\Delta t\)</span> becomes to larger. Another way to combat this, as opposed to just bringing down the value of <span class="math notranslate nohighlight">\(\Delta t\)</span> is to try to improve the quality of our estimate. One way is to take the average over the interval we are looking at, acknowledging that the derivative at this value of <span class="math notranslate nohighlight">\(N(t)\)</span> and the derivative at <span class="math notranslate nohighlight">\(N(t+\Delta t)\)</span> will be different from each other. By averaging these two values, we can get a better estimate of the derivative over the interval we are looking at. Concretely what this looks like is first calculating our updated value for <span class="math notranslate nohighlight">\(N\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\tilde{N} (t+\Delta t)=N(t)+kN(t)\Delta t. \tag{5}\]</div>
@@ -591,8 +580,8 @@ title="Print to PDF"
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="fourth-order-runge-kutta-method">
-<h1>Fourth-Order Runge-Kutta Method<a class="headerlink" href="#fourth-order-runge-kutta-method" title="Permalink to this headline">#</a></h1>
+<section id="fourth-order-runge-kutta-method">
+<h2>Fourth-Order Runge-Kutta Method<a class="headerlink" href="#fourth-order-runge-kutta-method" title="Permalink to this headline">#</a></h2>
 <p>Lastly, an even more nuanced approximation would incorporate even more points, such as the fourth-order Runge-Kutta method. Here we start to see the trade-off between the number of calculations required and the quality of the approximation. While Runge-Kutta will perform better the the Euler method, it requires a total of five calculations for every time step. For this problem, the additional computation won’t be that noticeable, but this may be something you have to consider for more complicated problems.</p>
 <p>In general for a differential equation <span class="math notranslate nohighlight">\(f(x)\)</span>, the approximation for <span class="math notranslate nohighlight">\(x\)</span> at time <span class="math notranslate nohighlight">\(t + \Delta t\)</span> is computed as follows</p>
 <div class="math notranslate nohighlight">
@@ -637,6 +626,7 @@ title="Print to PDF"
 <img alt="_images/03_numerical_integration_21_1.png" src="_images/03_numerical_integration_21_1.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
