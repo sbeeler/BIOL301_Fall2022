@@ -1,0 +1,772 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 3: Numerical integration &#8212; BIOL301 Fall 2022 materials</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/download.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">BIOL301 Fall 2022 materials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to the BIOL301 Webpage
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_configuring_computer.html">
+   Week 1: Configuring your computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro_to_jupyter.html">
+   Week 1: Introduction to JupyterLab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_terminal_commands.html">
+   Week 1: Terminal Commands
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro_to_latex.html">
+   Week 1: Introduction to LaTeX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_numerical_integration.html">
+   Week 3: Numerical Integration
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/03_numerical_integration_filled.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2F03_numerical_integration_filled.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/03_numerical_integration_filled.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 3: Numerical integration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#today-s-learning-objectives">
+   Today’s Learning objectives
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-euler-method">
+   The Euler Method
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#improved-euler">
+   Improved Euler
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourth-order-runge-kutta-method">
+   Fourth-order Runge-Kutta method
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 3: Numerical integration</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 3: Numerical integration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#today-s-learning-objectives">
+   Today’s Learning objectives
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-euler-method">
+   The Euler Method
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#improved-euler">
+   Improved Euler
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourth-order-runge-kutta-method">
+   Fourth-order Runge-Kutta method
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="week-3-numerical-integration">
+<h1>Week 3: Numerical integration<a class="headerlink" href="#week-3-numerical-integration" title="Permalink to this headline">#</a></h1>
+<hr/></section>
+<section class="tex2jax_ignore mathjax_ignore" id="today-s-learning-objectives">
+<h1>Today’s Learning objectives<a class="headerlink" href="#today-s-learning-objectives" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Implement the Euler Method for integration exponential growth over time</p></li>
+<li><p>Explain the effect <span class="math notranslate nohighlight">\(\Delta t\)</span> has on the quality of the approximation</p></li>
+<li><p>Explain what is meant by ‘higher order’ approximations, and be able to predict how they compare to the Euler method</p></li>
+<li><p>Implement one higher order approximation of exponential growth and compare it to the Euler method</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-euler-method">
+<h1>The Euler Method<a class="headerlink" href="#the-euler-method" title="Permalink to this headline">#</a></h1>
+<p>Developing simple ways to solve ordinary differential equations has long been an area of intense research. While deriving the analytical solution may be simple in some cases, it is often useful to solve them numerically, especially if slamming out the analytical solution will give you carpal tunnel.</p>
+<p>While there are many ways to numerically integrate these equations, in this tutorial we will examine the Forward Euler method. Say we have an ordinary differential equation such as</p>
+<div class="math notranslate nohighlight">
+\[ \frac{dN}{dt}=kN(t) \tag{1}\]</div>
+<p>as would be the case for exponential growth, where  <span class="math notranslate nohighlight">\(k\)</span>  is some growth-rate constant and  <span class="math notranslate nohighlight">\(t\)</span>  is time. Rather than solving this analytically (although it is not tricky to do so), we can solve it numerically by starting at some given value of  <span class="math notranslate nohighlight">\(N\)</span>, evaluating Equation (1) for a given time step <span class="math notranslate nohighlight">\(\Delta t\)</span> , and updating the new value of  <span class="math notranslate nohighlight">\(N\)</span>  at this new time  <span class="math notranslate nohighlight">\(t+\Delta t\)</span> . We can phrase this mathematically as</p>
+<div class="math notranslate nohighlight">
+\[N(t+\Delta t)=N(t)+kN(t)\Delta t. \tag{2}\]</div>
+<p>Say our initial value ( <span class="math notranslate nohighlight">\(N\)</span>  at  <span class="math notranslate nohighlight">\(t=0\)</span> ) is  <span class="math notranslate nohighlight">\(N=10\)</span>  and  <span class="math notranslate nohighlight">\(k=1\)</span>. We can take a time step <span class="math notranslate nohighlight">\(\Delta t=0.1\)</span>  and find that the change in value of <span class="math notranslate nohighlight">\(N\)</span>  is</p>
+<div class="math notranslate nohighlight">
+\[\Delta N=kN \Delta t=1.\tag{3}\]</div>
+<p>We can then compute the new value of  <span class="math notranslate nohighlight">\(N\)</span>  at time  <span class="math notranslate nohighlight">\(t+\Delta t\)</span>  as</p>
+<div class="math notranslate nohighlight">
+\[N(t+\Delta t)=N(t)+\Delta N=10+1=9.\tag{4}\]</div>
+<p>We can then take another step forward in time and repeat the process for as long as we would like. As the total time we’d like to integrate over becomes large, it becomes obvious why using a computer is a far more attractive approach than scribbling it by hand.</p>
+<p>A major point to be wary of is the instability of this method. The error in this scales with the square of our step size. We must choose a sufficiently small step in time such that at most only one computable event must occur. For example, if we are integrating exponential growth of bacterial cells, we don’t want to take time steps larger than a cell division! This requirement is known as the Courant-Friedrichs-Lewy condition and is important for many different time-marching computer simulations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the necessary modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># for pretty plots</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key text.latex.preview in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 123 (&#39;text.latex.preview : False&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key mathtext.fallback_to_cm in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 155 (&#39;mathtext.fallback_to_cm : True  # When True, use symbols from the Computer Modern&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key savefig.jpeg_quality in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 418 (&#39;savefig.jpeg_quality: 95       # when a jpeg is saved, the default quality parameter.&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key savefig.frameon in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 421 (&#39;savefig.frameon : True&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key verbose.level in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 472 (&#39;verbose.level  : silent      # one of silent, helpful, debug, debug-annoying&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key verbose.fileo in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 473 (&#39;verbose.fileo  : sys.stdout  # a log filename, sys.stdout or sys.stderr&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key keymap.all_axes in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 490 (&#39;keymap.all_axes : a                 # enable all axes&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key animation.avconv_path in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 501 (&#39;animation.avconv_path: avconv     # Path to avconv binary. Without full path&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key animation.avconv_args in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 503 (&#39;animation.avconv_args:            # Additional arguments to pass to avconv&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to numerically integrate Equation (1), we first need to specify a few parameters, such as the initial value of <span class="math notranslate nohighlight">\(N\)</span>, the growth rate <span class="math notranslate nohighlight">\(r\)</span> , and the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters for our ODE</span>
+<span class="n">N_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">0.03</span> <span class="c1"># min^-1</span>
+
+<span class="c1"># parameters for our integration</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># min</span>
+<span class="n">total_time</span> <span class="o">=</span> <span class="mi">120</span> <span class="c1"># min</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can set up an array into which we can save our values of  <span class="math notranslate nohighlight">\(N\)</span>  as they increase with time, with the first value in the <code class="docutils literal notranslate"><span class="pre">N_t</span></code> array being set to <code class="docutils literal notranslate"><span class="pre">N_0</span></code> as specified above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># determine the number of steps that will be taken</span>
+<span class="n">num_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_time</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+
+<span class="c1"># initilize an array of length num_steps into which to store values of N</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can actually compute the numerical integration, by looping through the <code class="docutils literal notranslate"><span class="pre">N</span></code> array and filling in the values of <code class="docutils literal notranslate"><span class="pre">N</span></code> as we go. At each time point <span class="math notranslate nohighlight">\(N(t+\Delta t)=N(t)+kN(t) \Delta t\)</span>,  where  <span class="math notranslate nohighlight">\(t+\Delta t\)</span>  refers to the next entry in the <code class="docutils literal notranslate"><span class="pre">N</span></code> array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerically integrate by looping through N</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="c1"># first calculate dN, using pevious N entry</span>
+    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># update current N entry</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And done! The numerical integration of more than a thousand time steps just happened nearly instantly, showing the immense value of using code to automate computational processes. Let’s now plot the results. We currently have the  <span class="math notranslate nohighlight">\(N\)</span>  values to plot, we just need to specify the  <span class="math notranslate nohighlight">\(t\)</span>  values as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make array of time values</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+
+<span class="c1"># plot </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;N&#39;)
+</pre></div>
+</div>
+<img alt="_images/03_numerical_integration_filled_11_1.png" src="_images/03_numerical_integration_filled_11_1.png" />
+</div>
+</div>
+<p>That certainly looks exponential! Let’s plot the known solution of  <span class="math notranslate nohighlight">\(N(t)=N_0e^{kt}\)</span>  on top of our numerical integration for comparison.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the known solution</span>
+<span class="n">soln</span> <span class="o">=</span> <span class="n">N_0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">times</span><span class="p">)</span>
+
+<span class="c1"># plot both our integration and the known solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">soln</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;numerical integration&quot;</span><span class="p">,</span> <span class="s2">&quot;known solution&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9d5467d290&gt;
+</pre></div>
+</div>
+<img alt="_images/03_numerical_integration_filled_13_1.png" src="_images/03_numerical_integration_filled_13_1.png" />
+</div>
+</div>
+<p>Nice! Our numerical integration and the known solution are so similar that the two lines can’t be distinguished from each other in the plot above. Recall how we said that picking a sufficiently small  <span class="math notranslate nohighlight">\(\Delta t\)</span>  is necessary for numerical integration to work? From here, it’s worth while to see how the plot above changes for different values of <code class="docutils literal notranslate"><span class="pre">dt</span></code>. As <code class="docutils literal notranslate"><span class="pre">dt</span></code> increases, our numerical integration deviates more and more from the known solution, with our integration systematically underestimating the true values. This is because with exponential growth, the rate of growth is always increasing and taking too large of a time step fails to capture this increase.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="improved-euler">
+<h1>Improved Euler<a class="headerlink" href="#improved-euler" title="Permalink to this headline">#</a></h1>
+<p>As discussed in Chapter 2.8 of Stogatz and as we saw above, Euler can result in inaccuracies as <span class="math notranslate nohighlight">\(\Delta t\)</span> becomes to larger. Another way to combat this, as opposed to just bringing down the value of <span class="math notranslate nohighlight">\(\Delta t\)</span> is to try to improve the quality of our estimate. One way is to take the average over the interval we are looking at, acknowledging that the derivative at this value of <span class="math notranslate nohighlight">\(N(t)\)</span> and the derivative at <span class="math notranslate nohighlight">\(N(t+\Delta t)\)</span> will be different from each other. By averaging these two values, we can get a better estimate of the derivative over the interval we are looking at. Concretely what this looks like is first calculating our updated value for <span class="math notranslate nohighlight">\(N\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\tilde{N} (t+\Delta t)=N(t)+kN(t)\Delta t. \tag{5}\]</div>
+<p>where the <span class="math notranslate nohighlight">\(\tilde{}\)</span> indicated that this is just an initial guess of <span class="math notranslate nohighlight">\(N\)</span> at <span class="math notranslate nohighlight">\(t+\Delta t\)</span>. Our final estimate of <span class="math notranslate nohighlight">\(N (t+\Delta t)\)</span> will incorporate this value, and is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[ N(t+\Delta t)=N(t)+ \frac{1}{2}[N(t)+\tilde{N}(t+\Delta t)]k\Delta t. \tag{6}\]</div>
+<p>Below, update our code from before to incorporate this more nuanced version of the Euler method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerically integrate by looping through N</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="c1"># first calculate dN, using pevious N_t entry</span>
+    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># initial guess at N, using normal Euler&#39;s</span>
+    <span class="n">N_guess</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
+    
+    <span class="c1"># final approximation for the new value of N</span>
+    <span class="n">N_new</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="n">N_guess</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># update the N array</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_new</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do the plots compare this time? Does it seem like this “improved” Euler actually helped?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the known solution</span>
+<span class="n">soln</span> <span class="o">=</span> <span class="n">N_0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">times</span><span class="p">)</span>
+
+<span class="c1"># plot both our integration and the known solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">soln</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;numerical integration&quot;</span><span class="p">,</span> <span class="s2">&quot;known solution&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9d5469a990&gt;
+</pre></div>
+</div>
+<img alt="_images/03_numerical_integration_filled_18_1.png" src="_images/03_numerical_integration_filled_18_1.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="fourth-order-runge-kutta-method">
+<h1>Fourth-order Runge-Kutta method<a class="headerlink" href="#fourth-order-runge-kutta-method" title="Permalink to this headline">#</a></h1>
+<p>Lastly, an even more nuanced approximation would incorporate even more points, such as the fourth-order Runge-Kutta method. Here we start to see the trade-off between the number of calculations required and the quality of the approximation. While Runge-Kutta will perform better the the Euler method, it require a total of five calculations for every time step. For this problem, the additional computation won’t be that noticeable, this may be something you have to consider for more complicated problems.</p>
+<p>In general for a differential equation <span class="math notranslate nohighlight">\(f(x)\)</span>, the approximation for <span class="math notranslate nohighlight">\(x\)</span> at time <span class="math notranslate nohighlight">\(t + \Delta t\)</span> is computed as follows</p>
+<p>\begin{aligned}
+&amp;k_1=f\left(x_t\right) \Delta t \[1em]
+&amp;k_2=f\left(x_t+\frac{1}{2} k_1\right) \Delta t \[1em]
+&amp;k_3=f\left(x_t+\frac{1}{2} k_2\right) \Delta t \[1em]
+&amp;k_4=f\left(x_t+k_3\right) \Delta t \[1em]
+\end{aligned}</p>
+<p>$<span class="math notranslate nohighlight">\(x_{t+\Delta t} = x_t + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)\)</span>$.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerically integrate by looping through N</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="c1"># first calculate dN, using pevious N_t entry</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="n">k2</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k1</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="n">k3</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k2</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="n">k4</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="n">k3</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># final approximation for the new value of N</span>
+    <span class="n">N_new</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+    
+    <span class="c1"># update the N array</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_new</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the known solution</span>
+<span class="n">soln</span> <span class="o">=</span> <span class="n">N_0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">times</span><span class="p">)</span>
+
+<span class="c1"># plot both our integration and the known solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">soln</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;numerical integration&quot;</span><span class="p">,</span> <span class="s2">&quot;known solution&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9d547c9a90&gt;
+</pre></div>
+</div>
+<img alt="_images/03_numerical_integration_filled_21_1.png" src="_images/03_numerical_integration_filled_21_1.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dr. Suzannah Beeler<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

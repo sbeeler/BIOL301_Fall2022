@@ -134,6 +134,11 @@ const thebe_selector_output = ".output, .cell_output"
    Week 1: Introduction to LaTeX
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_numerical_integration.html">
+   Week 3: Numerical Integration
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -429,66 +434,6 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Image</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">7</span><span class="n">y</span><span class="o">/</span><span class="mi">26</span><span class="n">f264rd4ldbcc1h172r7jkh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22679</span><span class="o">/</span><span class="mf">1657144074.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Image</span>
-
-<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="kn">import</span> <span class="nn">pandas.core.config_init</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> 
-<span class="ne">---&gt; </span><span class="mi">42</span> <span class="kn">from</span> <span class="nn">pandas.core.api</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="kn">from</span> <span class="nn">pandas.core.sparse.api</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="kn">from</span> <span class="nn">pandas.tseries.api</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> 
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">pandas.core.arrays.integer</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">Int8Dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">Int16Dtype</span><span class="p">,</span>
-
-<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">arrays</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.array_</span> <span class="kn">import</span> <span class="n">array</span>  <span class="c1"># noqa</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ExtensionArray</span><span class="p">,</span>    <span class="c1"># noqa</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                    <span class="n">ExtensionOpsMixin</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                    <span class="n">ExtensionScalarOpsMixin</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">.categorical</span> <span class="kn">import</span> <span class="n">Categorical</span>  <span class="c1"># noqa</span>
-
-<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">arrays</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span> <span class="nn">pandas.core.dtypes.missing</span> <span class="kn">import</span> <span class="n">isna</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> 
-<span class="ne">---&gt; </span><span class="mi">21</span> <span class="kn">from</span> <span class="nn">pandas.core</span> <span class="kn">import</span> <span class="n">ops</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> 
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">_not_implemented_message</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> does not implement </span><span class="si">{}</span><span class="s2">.&quot;</span>
-
-<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">ops</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> 
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span> <span class="nn">pandas.core</span> <span class="kn">import</span> <span class="n">algorithms</span>
-<span class="ne">---&gt; </span><span class="mi">21</span> <span class="kn">from</span> <span class="nn">pandas.core.ops.array_ops</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># noqa:F401</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">arithmetic_op</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="n">comp_method_OBJECT_ARRAY</span><span class="p">,</span>
-
-<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">ops</span><span class="o">/</span><span class="n">array_ops</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="kn">from</span> <span class="nn">pandas.core.dtypes.missing</span> <span class="kn">import</span> <span class="n">isna</span><span class="p">,</span> <span class="n">notna</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> 
-<span class="ne">---&gt; </span><span class="mi">33</span> <span class="kn">from</span> <span class="nn">pandas.core.construction</span> <span class="kn">import</span> <span class="n">ensure_wrapped_if_datetimelike</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="kn">from</span> <span class="nn">pandas.core.ops</span> <span class="kn">import</span> <span class="n">missing</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="kn">from</span> <span class="nn">pandas.core.ops.dispatch</span> <span class="kn">import</span> <span class="n">should_extension_dispatch</span>
-
-<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">construction</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span> <span class="nn">pandas._typing</span> <span class="kn">import</span> <span class="n">AnyArrayLike</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">Dtype</span><span class="p">,</span> <span class="n">DtypeObj</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> 
-<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">from</span> <span class="nn">pandas.core.dtypes.base</span> <span class="kn">import</span> <span class="n">ExtensionDtype</span><span class="p">,</span> <span class="n">registry</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span> <span class="nn">pandas.core.dtypes.cast</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">construct_1d_arraylike_from_scalar</span><span class="p">,</span>
-
-<span class="ne">ImportError</span>: cannot import name &#39;registry&#39; from &#39;pandas.core.dtypes.base&#39; (/Users/sbeeler/anaconda3/lib/python3.7/site-packages/pandas/core/dtypes/base.py)
 </pre></div>
 </div>
 </div>
