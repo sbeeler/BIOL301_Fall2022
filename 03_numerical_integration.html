@@ -431,10 +431,10 @@ title="Print to PDF"
 <section class="tex2jax_ignore mathjax_ignore" id="today-s-learning-objectives">
 <h1>Today’s Learning Objectives<a class="headerlink" href="#today-s-learning-objectives" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
-<li><p>Implement the Euler Method for integration exponential growth over time</p></li>
+<li><p>Implement the Euler Method for integrating exponential growth over time</p></li>
 <li><p>Explain the effect <span class="math notranslate nohighlight">\(\Delta t\)</span> has on the quality of the approximation</p></li>
 <li><p>Explain what is meant by ‘higher order’ approximations, and be able to predict how they compare to the Euler method</p></li>
-<li><p>Implement one higher order approximation of and compare it to the Euler method</p></li>
+<li><p>Implement one higher order approximation of exponential growth and compare it to the Euler method</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="the-euler-method">
@@ -463,62 +463,6 @@ title="Print to PDF"
 <span class="c1"># for pretty plots</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key text.latex.preview in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 123 (&#39;text.latex.preview : False&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key mathtext.fallback_to_cm in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 155 (&#39;mathtext.fallback_to_cm : True  # When True, use symbols from the Computer Modern&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key savefig.jpeg_quality in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 418 (&#39;savefig.jpeg_quality: 95       # when a jpeg is saved, the default quality parameter.&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key savefig.frameon in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 421 (&#39;savefig.frameon : True&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key verbose.level in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 472 (&#39;verbose.level  : silent      # one of silent, helpful, debug, debug-annoying&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key verbose.fileo in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 473 (&#39;verbose.fileo  : sys.stdout  # a log filename, sys.stdout or sys.stderr&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key keymap.all_axes in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 490 (&#39;keymap.all_axes : a                 # enable all axes&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key animation.avconv_path in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 501 (&#39;animation.avconv_path: avconv     # Path to avconv binary. Without full path&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key animation.avconv_args in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 503 (&#39;animation.avconv_args:            # Additional arguments to pass to avconv&#39;)
-You probably need to get an updated matplotlibrc file from
-https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
-or from the matplotlib source distribution
 </pre></div>
 </div>
 </div>
@@ -596,7 +540,7 @@ or from the matplotlib source distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f880be7a210&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe4f74c7050&gt;
 </pre></div>
 </div>
 <img alt="_images/03_numerical_integration_13_1.png" src="_images/03_numerical_integration_13_1.png" />
@@ -640,7 +584,7 @@ or from the matplotlib source distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f880beae290&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe4f767a750&gt;
 </pre></div>
 </div>
 <img alt="_images/03_numerical_integration_18_1.png" src="_images/03_numerical_integration_18_1.png" />
@@ -687,7 +631,7 @@ or from the matplotlib source distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f880c013310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe4f7750a10&gt;
 </pre></div>
 </div>
 <img alt="_images/03_numerical_integration_21_1.png" src="_images/03_numerical_integration_21_1.png" />
