@@ -464,7 +464,7 @@ title="Print to PDF"
 <span class="n">k</span> <span class="o">=</span> <span class="mf">0.03</span> <span class="c1"># min^-1</span>
 
 <span class="c1"># parameters for our integration</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># min</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># min</span>
 <span class="n">total_time</span> <span class="o">=</span> <span class="mi">120</span> <span class="c1"># min</span>
 </pre></div>
 </div>
@@ -487,8 +487,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerically integrate by looping through N</span>
-
-<span class="c1"># FILL IN THE REST HERE</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="c1"># first calculate dN, using pevious N entry</span>
+    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># update current N entry</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
 </pre></div>
 </div>
 </div>
@@ -529,7 +534,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe4f74c7050&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faefdda8950&gt;
 </pre></div>
 </div>
 <img alt="_images/03_numerical_integration_13_1.png" src="_images/03_numerical_integration_13_1.png" />
@@ -551,8 +556,17 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerically integrate by looping through N</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     
-    <span class="c1"># FILL IN THE REST HERE</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_0</span>
+    <span class="c1"># first calculate dN, using pevious N_t entry</span>
+    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># initial guess at N, using normal Euler&#39;s</span>
+    <span class="n">N_guess</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
+    
+    <span class="c1"># final approximation for the new value of N</span>
+    <span class="n">N_new</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="n">N_guess</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># update the N array</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_new</span>
 </pre></div>
 </div>
 </div>
@@ -573,7 +587,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe4f767a750&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faefddf6210&gt;
 </pre></div>
 </div>
 <img alt="_images/03_numerical_integration_18_1.png" src="_images/03_numerical_integration_18_1.png" />
