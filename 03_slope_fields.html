@@ -433,6 +433,30 @@ title="Print to PDF"
 <h2>Plotting <span class="math notranslate nohighlight">\(\dot x\)</span> vs. <span class="math notranslate nohighlight">\(x\)</span><a class="headerlink" href="#plotting-dot-x-vs-x" title="Permalink to this headline">#</a></h2>
 <p>We’ve gotten quite a bit of practice graphing our differential equations by hand so far, but it would be better to have a way to do this programmatically. Specifically, we might want to plot <span class="math notranslate nohighlight">\(\dot x\)</span> vs. <span class="math notranslate nohighlight">\(x\)</span> when our linear stability analysis has failed us, and we can’t determine the stability of a fixed point from the second derivative.</p>
 <p>Below, let’s consider <span class="math notranslate nohighlight">\(\dot x = x^2(6-x)\)</span>. We’ll want to plot <span class="math notranslate nohighlight">\(\dot x\)</span> over a relevant range of <span class="math notranslate nohighlight">\(x\)</span> values, in this case spanning at least 0 and 6, so we can see the behavior at the two fixed points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify x values</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># compute corresponding x_dot</span>
+<span class="n">x_dot</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">6</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_dot</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="c1"># add axes at y=0, x=0 as a visual aid </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fe4ee47f210&gt;
+</pre></div>
+</div>
+<img alt="_images/03_slope_fields_3_1.png" src="_images/03_slope_fields_3_1.png" />
+</div>
+</div>
 </section>
 <section id="plotting-slope-fields">
 <h2>Plotting slope fields<a class="headerlink" href="#plotting-slope-fields" title="Permalink to this headline">#</a></h2>
