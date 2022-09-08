@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 1: Navigating a Jupyter Notebook &#8212; BIOL301 Fall 2022 materials</title>
+    <title>Week 3: Slope fields and other graphical analysis &#8212; BIOL301 Fall 2022 materials</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Week 3: Numerical Integration" href="03_numerical_integration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -113,7 +114,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_configuring_computer.html">
    Week 1: Configuring your computer
@@ -139,8 +140,8 @@ const thebe_selector_output = ".output, .cell_output"
    Week 3: Numerical Integration
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_slope_fields.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Week 3: Slope fields and other graphical analysis
   </a>
  </li>
@@ -203,7 +204,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/01_first_notebook.ipynb"
+        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/03_slope_fields.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -263,7 +264,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2F01_first_notebook.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2F03_slope_fields.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -291,7 +292,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/01_first_notebook.ipynb"
+        <a href="_sources/03_slope_fields.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -350,32 +351,22 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Week 1: Navigating a Jupyter Notebook
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-dot-x-vs-x">
+   Plotting
+   <span class="math notranslate nohighlight">
+    \(\dot x\)
+   </span>
+   vs.
+   <span class="math notranslate nohighlight">
+    \(x\)
+   </span>
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loading-in-files">
-   Loading in files
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-slope-fields">
+   Plotting slope fields
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#embedding-images">
-   Embedding images
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#typesetting-equations">
-     Typesetting equations
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#submitting-your-in-class-work">
-     Submitting your in class work
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -386,7 +377,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 1: Navigating a Jupyter Notebook</h1>
+                <h1>Week 3: Slope fields and other graphical analysis</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -396,32 +387,22 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Week 1: Navigating a Jupyter Notebook
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-dot-x-vs-x">
+   Plotting
+   <span class="math notranslate nohighlight">
+    \(\dot x\)
+   </span>
+   vs.
+   <span class="math notranslate nohighlight">
+    \(x\)
+   </span>
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loading-in-files">
-   Loading in files
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-slope-fields">
+   Plotting slope fields
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#embedding-images">
-   Embedding images
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#typesetting-equations">
-     Typesetting equations
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#submitting-your-in-class-work">
-     Submitting your in class work
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -433,121 +414,66 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-1-navigating-a-jupyter-notebook">
-<h1>Week 1: Navigating a Jupyter Notebook<a class="headerlink" href="#week-1-navigating-a-jupyter-notebook" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-3-slope-fields-and-other-graphical-analysis">
+<h1>Week 3: Slope fields and other graphical analysis<a class="headerlink" href="#week-3-slope-fields-and-other-graphical-analysis" title="Permalink to this headline">#</a></h1>
 <hr/><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the necessary modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># for pretty plots</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Below, we’ll work through some of the key pieces we would like to use in Jupyter Notebooks. Many aspects will be similar to our work in Colab, but I hope you’ll find it more user-friendly!</p>
+<section id="plotting-dot-x-vs-x">
+<h2>Plotting <span class="math notranslate nohighlight">\(\dot x\)</span> vs. <span class="math notranslate nohighlight">\(x\)</span><a class="headerlink" href="#plotting-dot-x-vs-x" title="Permalink to this headline">#</a></h2>
+<p>We’ve gotten quite a bit of practice graphing our differential equations by hand so far, but it would be better to have a way to do this programmatically. Specifically, we might want to plot <span class="math notranslate nohighlight">\(\dot x\)</span> vs. <span class="math notranslate nohighlight">\(x\)</span> when our linear stability analysis has failed us, and we can’t determine the stability of a fixed point from the second derivative.</p>
+<p>Below, let’s consider <span class="math notranslate nohighlight">\(\dot x = x^2(6-x)\)</span>. We’ll want to plot <span class="math notranslate nohighlight">\(\dot x\)</span> over a relevant range of <span class="math notranslate nohighlight">\(x\)</span> values, in this case spanning at least 0 and 6, so we can see the behavior at the two fixed points.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="loading-in-files">
-<h1>Loading in files<a class="headerlink" href="#loading-in-files" title="Permalink to this headline">#</a></h1>
-<p>Below we can open a <code class="docutils literal notranslate"><span class="pre">csv</span></code> file by specifying where the file exists <em>relative</em> to the notebook we are working in. As a standard, we will keep our data files in a <code class="docutils literal notranslate"><span class="pre">data</span></code> folder, so the path will be of the form <code class="docutils literal notranslate"><span class="pre">data/file_of_interest</span></code>.</p>
-<p>No need for uploads or permissions! Just place the data where you can find it, and you can code to your heart’s content.</p>
+<section id="plotting-slope-fields">
+<h2>Plotting slope fields<a class="headerlink" href="#plotting-slope-fields" title="Permalink to this headline">#</a></h2>
+<p>Yet another way to visualize how a differential equation system might proceed over time is with a <em>slope field</em>. A slope field is plotted as <span class="math notranslate nohighlight">\(x\)</span> vs. <span class="math notranslate nohighlight">\(t\)</span>, where at each value, a small line is plotted to indicate the value of <span class="math notranslate nohighlight">\(\dot x\)</span>. The slope of this line indicates the direction the system will proceed in when at that particular value of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span>. By repeatedly following these slopes, we can begin to see the direction the system will head in over time. You can think of it as “Euler by eye,” where we get periodic estimates of the slope, and can use them to guide us to stable fixed point values.</p>
+<p>Below I include the code for how to make the slope field for <span class="math notranslate nohighlight">\(\dot x = x^2(6-x)\)</span>. The approach is a little convoluted, and beyond what I expect you to know for this course. However, you can easily repurpose this code for any other differential equation function by just changing the <code class="docutils literal notranslate"><span class="pre">x</span></code> values you want to plot over, and updating the <code class="docutils literal notranslate"><span class="pre">x_dot</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/iris.txt&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify range of t and x values to plot over</span>
+<span class="c1"># last number is the number of arrows that will be plotted per side</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># set up &#39;grid&#39; of (t,x) values for plot</span>
+<span class="n">T</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># define the x_dot function</span>
+<span class="k">def</span> <span class="nf">x_dot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">6</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># compute x_dot for our grid of (t,x) values</span>
+<span class="n">dXdT</span> <span class="o">=</span> <span class="n">x_dot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># nomalize the lengths of the arrows, for cleaner plotting</span>
+<span class="n">U</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dXdT</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dXdT</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">dXdT</span>
+
+<span class="c1"># plot the U, V arrows on the T, X grid</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal.length</th>
-      <th>sepal.width</th>
-      <th>petal.length</th>
-      <th>petal.width</th>
-      <th>variety</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5.1</td>
-      <td>3.5</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Setosa</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4.9</td>
-      <td>3.0</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Setosa</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.7</td>
-      <td>3.2</td>
-      <td>1.3</td>
-      <td>0.2</td>
-      <td>Setosa</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.6</td>
-      <td>3.1</td>
-      <td>1.5</td>
-      <td>0.2</td>
-      <td>Setosa</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5.0</td>
-      <td>3.6</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Setosa</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;x&#39;)
+</pre></div>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="embedding-images">
-<h1>Embedding images<a class="headerlink" href="#embedding-images" title="Permalink to this headline">#</a></h1>
-<p>For some of our problems, we may want to have a sketch or drawing that we would like to include. To this:</p>
-<ul class="simple">
-<li><p>Make a new cell</p></li>
-<li><p>Change it to a Markdown cell</p></li>
-<li><p>Click and drag the image you’d like into the cell</p></li>
-<li><p>Hit <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">Enter</span></code></p></li>
-</ul>
-<p><img alt="limit_cycles.jpg" src="attachment:8e755c6e-863c-48e2-8473-8b980fc50572.jpg" /></p>
-<p>For practice, display an image of your choice below! Make sure you place the image in the <code class="docutils literal notranslate"><span class="pre">images</span></code> folder, so you can access it.</p>
-<section id="typesetting-equations">
-<h2>Typesetting equations<a class="headerlink" href="#typesetting-equations" title="Permalink to this headline">#</a></h2>
-<p>Lastly, we will want to be able to write equations as we mathematically describe biological systems. Below we will get some practice with <span class="math notranslate nohighlight">\(\LaTeX\)</span>:</p>
-</section>
-<section id="submitting-your-in-class-work">
-<h2>Submitting your in class work<a class="headerlink" href="#submitting-your-in-class-work" title="Permalink to this headline">#</a></h2>
-<p>Go to <code class="docutils literal notranslate"><span class="pre">File</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">and</span> <span class="pre">Export</span> <span class="pre">Notebook</span> <span class="pre">As</span></code> –&gt; HTML.</p>
-<p>Upload this file to Canvas.</p>
-<p>(If you were working in colab today, you can instead submit a <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file.)</p>
+<img alt="_images/03_slope_fields_5_1.png" src="_images/03_slope_fields_5_1.png" />
+</div>
+</div>
+<p>From this plot, we can see the semi-stable nature of the fixed point at <span class="math notranslate nohighlight">\(x=0\)</span>: values below 0 flow towards the fixed point, while values above zero flow away.</p>
 </section>
 </section>
 
@@ -578,6 +504,13 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03_numerical_integration.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 3: Numerical Integration</p>
+        </div>
+    </a>
 </div>
             </footer>
         </div>
