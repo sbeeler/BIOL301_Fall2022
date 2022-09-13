@@ -146,6 +146,11 @@ const thebe_selector_output = ".output, .cell_output"
    Week 3: Slope fields and other graphical analysis
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_lotka_volterra.html">
+   Week 4: Lotka-Volterra
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -612,7 +617,8 @@ title="Print to PDF"
 \[k_3=f\left(x_t+\frac{1}{2} k_2\right) \Delta t\]</div>
 <div class="math notranslate nohighlight">
 \[k_4=f\left(x_t+k_3\right) \Delta t \]</div>
-<p>$<span class="math notranslate nohighlight">\(x_{t+\Delta t} = x_t + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)\)</span>$.</p>
+<div class="math notranslate nohighlight">
+\[x_{t+\Delta t} = x_t + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)\]</div>
 <p>Once again, let’s update our integration from before to compute this more precise approximation. How does this fourth-order approximation compare to the Euler method? How about the improved Euler method?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
