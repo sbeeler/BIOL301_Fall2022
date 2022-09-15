@@ -457,6 +457,54 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key text.latex.preview in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 123 (&#39;text.latex.preview : False&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key mathtext.fallback_to_cm in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 155 (&#39;mathtext.fallback_to_cm : True  # When True, use symbols from the Computer Modern&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key savefig.jpeg_quality in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 418 (&#39;savefig.jpeg_quality: 95       # when a jpeg is saved, the default quality parameter.&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key savefig.frameon in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 421 (&#39;savefig.frameon : True&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key verbose.level in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 472 (&#39;verbose.level  : silent      # one of silent, helpful, debug, debug-annoying&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key verbose.fileo in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 473 (&#39;verbose.fileo  : sys.stdout  # a log filename, sys.stdout or sys.stderr&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key keymap.all_axes in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 490 (&#39;keymap.all_axes : a                 # enable all axes&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key animation.avconv_path in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 501 (&#39;animation.avconv_path: avconv     # Path to avconv binary. Without full path&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key animation.avconv_args in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 503 (&#39;animation.avconv_args:            # Additional arguments to pass to avconv&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
+</div>
+</div>
 </div>
 <section id="learning-objectives">
 <h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h2>
@@ -481,6 +529,7 @@ title="Print to PDF"
 <span class="sd">    Right hand side for logistic growth.</span>
 <span class="sd">    Looking at two population silumtaneously </span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># unpack the x and y values</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
     
     <span class="c1"># Compute dx/dt</span>
@@ -511,12 +560,19 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="c1"># Initial conditions</span>
+<span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="c1"># Parameters</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">K1</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">K2</span> <span class="o">=</span> <span class="mi">2000</span> 
 
 <span class="c1"># Package parameters into a tuple</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">K1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">K2</span><span class="p">)</span>
 
 <span class="c1"># Integrate ODES</span>
 <span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">logistic_growth_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
@@ -544,6 +600,39 @@ title="Print to PDF"
 </div>
 </div>
 <p>Let’s pause for a moment and think about how we might plot this information?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">xy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Pop. 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Pop 2&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;population size&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;population size&#39;)
+</pre></div>
+</div>
+<img alt="_images/04_scipy_integration_10_1.png" src="_images/04_scipy_integration_10_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">[:</span> <span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">[:</span> <span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Pop. 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Pop 2&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;population size&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;population size&#39;)
+</pre></div>
+</div>
+<img alt="_images/04_scipy_integration_11_1.png" src="_images/04_scipy_integration_11_1.png" />
+</div>
+</div>
 <p>Now it’s your turn! Returning to our example from Tuesday, let’s now integrate this same system of equation with <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
 <p>Also, while I almost always advocate for writing code yourself, I did want to share this nice web applet that can nicely display the slope field and various trajectories, as another way to get a sense of how the system will be have over time:</p>
 <p><a class="reference external" href="https://aeb019.hosted.uark.edu/pplane.html">https://aeb019.hosted.uark.edu/pplane.html</a></p>
@@ -556,6 +645,71 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[\dot y = y(2-x-y)\]</div>
 <p>Below, conduct the numerical integration with <code class="docutils literal notranslate"><span class="pre">scipy</span></code> and plot the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rabbits_v_sheep_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right hand side for rabbits vs. sheep</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># unpack the x and y values</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
+    
+    <span class="c1"># Compute dx/dt</span>
+    <span class="n">dx_dt</span> <span class="o">=</span>  <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+    
+     <span class="c1"># Compute dy/dt</span>
+    <span class="n">dy_dt</span> <span class="o">=</span>  <span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Return the result as a NumPy array</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Initial conditions</span>
+<span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="c1"># Integrate ODES</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">rabbits_v_sheep_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;rabbits&quot;</span><span class="p">,</span><span class="s2">&quot;sheep&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc0afdf6050&gt;
+</pre></div>
+</div>
+<img alt="_images/04_scipy_integration_16_1.png" src="_images/04_scipy_integration_16_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;rabbits&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;sheep&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 3.0)
+</pre></div>
+</div>
+<img alt="_images/04_scipy_integration_17_1.png" src="_images/04_scipy_integration_17_1.png" />
+</div>
+</div>
 </section>
 <section id="thinking-about-rabbits-vs-foxes">
 <h2>Thinking about rabbits vs. foxes<a class="headerlink" href="#thinking-about-rabbits-vs-foxes" title="Permalink to this headline">#</a></h2>
@@ -571,6 +725,67 @@ title="Print to PDF"
 <li><p>how might this change the behavior?</p></li>
 </ul>
 <p>If we have time, try to integrate this system over time. Think about the meaning of each parameter, and try to give an educated guess at their values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rabbits_v_foxes_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right hand side for logistic growth.</span>
+<span class="sd">    Looking at two population silumtaneously </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># unpack the x and y values</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
+    
+    <span class="c1"># Compute dx/dt</span>
+    <span class="n">dx_dt</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+    
+     <span class="c1"># Compute dy/dt</span>
+    <span class="n">dy_dt</span> <span class="o">=</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+
+    <span class="c1"># Return the result as a NumPy array</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span> 
+
+<span class="c1"># Initial conditions</span>
+<span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">10</span> 
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># Package parameters into a tuple</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="c1"># Integrate ODES</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">rabbits_v_foxes_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;rabbits&quot;</span><span class="p">,</span><span class="s2">&quot;foxes&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;population size&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;population size&#39;)
+</pre></div>
+</div>
+<img alt="_images/04_scipy_integration_21_1.png" src="_images/04_scipy_integration_21_1.png" />
+</div>
+</div>
 </section>
 </section>
 
