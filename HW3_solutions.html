@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Problem 1 &#8212; BIOL301 Fall 2022 materials</title>
+    <title>Week 4: Lotka-Volterra &#8212; BIOL301 Fall 2022 materials</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -355,107 +355,35 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Problem 1
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integrate-by-looping-through-time">
+   Integrate by looping through time
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-2">
-   Problem 2
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-our-results-in-the-x-y-plane">
+   Plot our results in the x, y plane
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-3">
-   Problem 3
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-our-results-over-time">
+   Plot our results over time
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-dot-x-x-1-x-2-x">
-     (a)
-     <span class="math notranslate nohighlight">
-      \(\dot x = x(1-x)(2-x)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#b-dot-x-1-e-x-2">
-     (b)
-     <span class="math notranslate nohighlight">
-      \(\dot x = 1 - e^{-x^2}\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#c-dot-x-ax-x-3">
-     (c)
-     <span class="math notranslate nohighlight">
-      \(\dot x = ax- x^3\)
-     </span>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#when-a-is-positive">
-       When
-       <span class="math notranslate nohighlight">
-        \(a\)
-       </span>
-       is positive
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#when-a-0">
-       When
-       <span class="math notranslate nohighlight">
-        \(a=0\)
-       </span>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#when-a-is-negative">
-       When
-       <span class="math notranslate nohighlight">
-        \(a\)
-       </span>
-       is negative
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-4">
-   Problem 4
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#let-s-put-this-all-in-a-function">
+   Let’s put this all in a function!
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a">
-     (a)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#b">
-     (b)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dot-x-x-1-x-2-x">
-       <span class="math notranslate nohighlight">
-        \(\dot x = x(1-x)(2-x)\)
-       </span>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dot-x-1-e-x-2">
-       <span class="math notranslate nohighlight">
-        \(\dot x = 1 - e^{-x^2}\)
-       </span>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   6.4.2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   6.4.6
+  </a>
  </li>
 </ul>
 
@@ -466,7 +394,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Problem 1</h1>
+                <h1>Week 4: Lotka-Volterra</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -476,107 +404,35 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Problem 1
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integrate-by-looping-through-time">
+   Integrate by looping through time
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-2">
-   Problem 2
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-our-results-in-the-x-y-plane">
+   Plot our results in the x, y plane
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-3">
-   Problem 3
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-our-results-over-time">
+   Plot our results over time
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-dot-x-x-1-x-2-x">
-     (a)
-     <span class="math notranslate nohighlight">
-      \(\dot x = x(1-x)(2-x)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#b-dot-x-1-e-x-2">
-     (b)
-     <span class="math notranslate nohighlight">
-      \(\dot x = 1 - e^{-x^2}\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#c-dot-x-ax-x-3">
-     (c)
-     <span class="math notranslate nohighlight">
-      \(\dot x = ax- x^3\)
-     </span>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#when-a-is-positive">
-       When
-       <span class="math notranslate nohighlight">
-        \(a\)
-       </span>
-       is positive
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#when-a-0">
-       When
-       <span class="math notranslate nohighlight">
-        \(a=0\)
-       </span>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#when-a-is-negative">
-       When
-       <span class="math notranslate nohighlight">
-        \(a\)
-       </span>
-       is negative
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-4">
-   Problem 4
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#let-s-put-this-all-in-a-function">
+   Let’s put this all in a function!
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a">
-     (a)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#b">
-     (b)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dot-x-x-1-x-2-x">
-       <span class="math notranslate nohighlight">
-        \(\dot x = x(1-x)(2-x)\)
-       </span>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dot-x-1-e-x-2">
-       <span class="math notranslate nohighlight">
-        \(\dot x = 1 - e^{-x^2}\)
-       </span>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   6.4.2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   6.4.6
+  </a>
  </li>
 </ul>
 
@@ -588,454 +444,432 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="week-4-lotka-volterra">
+<h1>Week 4: Lotka-Volterra<a class="headerlink" href="#week-4-lotka-volterra" title="Permalink to this headline">#</a></h1>
+<hr/><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the necessary modules</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
+<span class="c1"># for pretty plots</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="problem-1">
-<h1>Problem 1<a class="headerlink" href="#problem-1" title="Permalink to this headline">#</a></h1>
-<p>First let’s set up all the parameters we will need for each of the simulations, regardless of the approach.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters for our ODE</span>
-<span class="n">N_0</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mf">0.03</span> <span class="c1"># min^-1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">logistic_growth_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">K1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">K2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right hand side for logistic growth.</span>
+<span class="sd">    Looking at two population silumtaneously </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
+    
+    <span class="c1"># Compute dx/dt</span>
+    <span class="n">dx_dt</span> <span class="o">=</span>  <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+    
+     <span class="c1"># Compute dy/dt</span>
+    <span class="n">dx_dt</span> <span class="o">=</span>  <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
 
-<span class="c1"># parameters for our integration</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># min</span>
-<span class="n">total_time</span> <span class="o">=</span> <span class="mi">120</span> <span class="c1"># min</span>
-
-<span class="c1"># determine the number of steps that will be taken</span>
-<span class="n">num_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_time</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+    <span class="c1"># Return the result as a NumPy array</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Below we do the approximation using the Euler method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initilize an array of length num_steps into which to store values of N</span>
-<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 
-<span class="c1"># numerically integrate by looping through N</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    
-    <span class="c1"># first calculate dN, using pevious N entry</span>
-    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
-    
-    <span class="c1"># update current N entry</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
-    
-<span class="c1"># save array for plotting later</span>
-<span class="n">euler</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now we do the “improved” Euler.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reset the N array for the population</span>
-<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_0</span>
+<span class="c1"># Initial condition</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="c1"># numerically integrate by looping through N</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    
-    <span class="c1"># first calculate dN, using pevious N_t entry</span>
-    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
-    
-    <span class="c1"># initial guess at N, using normal Euler&#39;s</span>
-    <span class="n">N_guess</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
-    
-    <span class="c1"># final approximation for the new value of N</span>
-    <span class="n">N_new</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="n">N_guess</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
-    
-    <span class="c1"># update the N array</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_new</span>
-    
-<span class="c1"># save array for plotting later</span>
-<span class="n">improved_euler</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Lastly, we have the Runge-Kutta approximation.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reset the N array for the population</span>
-<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_0</span>
-
-<span class="c1"># numerically integrate by looping through N</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    
-    <span class="c1"># first calculate dN, using pevious N_t entry</span>
-    <span class="n">k1</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
-    
-    <span class="c1"># calulcate the other intermediated values</span>
-    <span class="n">k2</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k1</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">k3</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k2</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">k4</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span><span class="n">k3</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">dt</span>
-    
-    <span class="c1"># final approximation for the new value of N</span>
-    <span class="n">N_new</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
-    
-    <span class="c1"># update the N array</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_new</span>
-    
-<span class="c1"># save array for plotting later</span>
-<span class="n">runge_kutta</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now we can plot all of them below to see how they compare.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the known solution</span>
-<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-<span class="n">soln</span> <span class="o">=</span> <span class="n">N_0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">times</span><span class="p">)</span>
-
-<span class="c1"># plot both our integration and the known solution</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">euler</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">improved_euler</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">runge_kutta</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">soln</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Euler&quot;</span><span class="p">,</span> <span class="s2">&quot;Improved Euler&quot;</span><span class="p">,</span> <span class="s2">&quot;Runge-Kutta&quot;</span><span class="p">,</span> <span class="s2">&quot;Known Solution&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc057988310&gt;
-</pre></div>
-</div>
-<img alt="_images/HW3_solutions_10_1.png" src="_images/HW3_solutions_10_1.png" />
-</div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="problem-2">
-<h1>Problem 2<a class="headerlink" href="#problem-2" title="Permalink to this headline">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters for our ODE</span>
-<span class="n">N_0</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1"># Parameters</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">2</span> 
 <span class="n">K</span> <span class="o">=</span> <span class="mi">1000</span>
 
-<span class="c1"># parameters for our integration</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="n">total_time</span> <span class="o">=</span> <span class="mi">25</span> 
+<span class="c1"># Package parameters into a tuple</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-<span class="c1"># determine the number of steps that will be taken</span>
-<span class="n">num_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_time</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+<span class="c1"># Integrate ODES</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">logistic_growth_rhs</span><span class="p">,</span> <span class="n">x_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initilize an array of length num_steps into which to store values of N</span>
-<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_0</span>
-
-<span class="c1"># numerically integrate by looping through N</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    
-    <span class="c1"># first calculate dN, using pevious N entry</span>
-    <span class="n">dN</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-    
-    <span class="c1"># update current N entry</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the known solution</span>
-<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-<span class="n">soln_top</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">N_0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">times</span><span class="p">)</span>
-<span class="n">soln_bottom</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="n">N_0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">times</span><span class="p">))</span>
-<span class="n">soln</span> <span class="o">=</span> <span class="n">soln_top</span> <span class="o">/</span> <span class="n">soln_bottom</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">soln</span><span class="p">)</span>
-
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Euler&quot;</span><span class="p">,</span> <span class="s2">&quot;Known Solution&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc057c03b10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc03fde56d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/HW3_solutions_14_1.png" src="_images/HW3_solutions_14_1.png" />
+<img alt="_images/HW3_solutions_4_1.png" src="_images/HW3_solutions_4_1.png" />
 </div>
 </div>
+<section id="integrate-by-looping-through-time">
+<h2>Integrate by looping through time<a class="headerlink" href="#integrate-by-looping-through-time" title="Permalink to this headline">#</a></h2>
+<p>Below we will explore the system of equations:</p>
+<div class="math notranslate nohighlight">
+\[\dot x = x(3-x-2y)\]</div>
+<div class="math notranslate nohighlight">
+\[\dot y = y(2-x-y)\]</div>
+<p>which is one particular example of a Lotka-Volterra model. Later we will consider more generic forms, but for now we will imagine this is modeling a population of rabbits, <span class="math notranslate nohighlight">\(x(t)\)</span> and of sheep, <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
+<p>While we don’t yet have the mathematical tools for how to analyze a system of two differential equations, we can still rely on computational (i.e. numerical) methods to see how this system will change over time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_growth</span><span class="p">(</span><span class="n">N_0</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span> 
+    <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-our-results-in-the-x-y-plane">
+<h2>Plot our results in the x, y plane<a class="headerlink" href="#plot-our-results-in-the-x-y-plane" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;rabbits&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;sheep&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/HW3_solutions_9_0.png" src="_images/HW3_solutions_9_0.png" />
+</div>
+</div>
+</section>
+<section id="plot-our-results-over-time">
+<h2>Plot our results over time<a class="headerlink" href="#plot-our-results-over-time" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;rabbit&quot;</span><span class="p">,</span><span class="s2">&quot;sheep&quot;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/HW3_solutions_11_0.png" src="_images/HW3_solutions_11_0.png" />
+</div>
+</div>
+</section>
+<section id="let-s-put-this-all-in-a-function">
+<h2>Let’s put this all in a function!<a class="headerlink" href="#let-s-put-this-all-in-a-function" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lotka_volterra</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">y_0</span><span class="p">):</span>
     
-    <span class="c1"># initilize an array of length num_steps into which to store values of N</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-    <span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_0</span>
-
-    <span class="c1"># numerically integrate by looping through N</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-
-        <span class="c1"># first calculate dN, using pevious N entry</span>
-        <span class="n">dN</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-
-        <span class="c1"># update current N entry</span>
-        <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
+    <span class="c1"># set up initial conditions</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_0</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+    <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_0</span>
+    
+    <span class="c1"># numerically integrate</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span> 
+        <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span> 
         
-    <span class="k">return</span> <span class="n">N</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now we can repeatedly call our function for different starting values to see how the systems behaves over time. From the behavior, we can start to see which fixed points are stable and which are unstable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">N_0</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">2000</span><span class="p">]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 
-    <span class="n">N</span> <span class="o">=</span> <span class="n">log_growth</span><span class="p">(</span><span class="n">N_0</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;rabbits&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;sheep&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/HW3_solutions_15_0.png" src="_images/HW3_solutions_15_0.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>6.4.2<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LV_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right hand side for lotka-volterra</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Unpack x and y</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
     
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="c1"># Compute dx/dt</span>
+    <span class="n">dx_dt</span> <span class="o">=</span>  <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> 
     
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$N_0$ = 2&quot;</span><span class="p">,</span> <span class="s2">&quot;$N_0$ = 100&quot;</span><span class="p">,</span> <span class="s2">&quot;$N_0$ = 600&quot;</span><span class="p">,</span> <span class="s2">&quot;$N_0$ = 20000&quot;</span><span class="p">])</span>
+    <span class="c1"># Compute dy/dt</span>
+    <span class="n">dy_dt</span> <span class="o">=</span>  <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> 
+    
+    <span class="c1"># Return the result as a NumPy array</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc057ce7110&gt;
-</pre></div>
 </div>
-<img alt="_images/HW3_solutions_16_1.png" src="_images/HW3_solutions_16_1.png" />
-</div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="problem-3">
-<h1>Problem 3<a class="headerlink" href="#problem-3" title="Permalink to this headline">#</a></h1>
-<section id="a-dot-x-x-1-x-2-x">
-<h2>(a) <span class="math notranslate nohighlight">\(\dot x = x(1-x)(2-x)\)</span><a class="headerlink" href="#a-dot-x-x-1-x-2-x" title="Permalink to this headline">#</a></h2>
-<p>The fixed points are at <span class="math notranslate nohighlight">\(x=0\)</span>, <span class="math notranslate nohighlight">\(x=1\)</span>, <span class="math notranslate nohighlight">\(x=2\)</span></p>
-<p>To establish their stability, let’s first make it easier to take the second derivative.</p>
-<p>\begin{align}
-\dot x &amp;= x(1-x)(2-x) \
-&amp;= (x-x^2)(2-x) \
-&amp;= 2x - x^2 - 2x^2 + x^3 \
-&amp;= x^3 -3x^2 + 2x
-\end{align}</p>
-<p>We can now find the second derivative as:</p>
-<p>\begin{align}
-\ddot x = 3x^2 - 6x + 2
-\end{align}</p>
-<p>Stability analysis:</p>
-<ul class="simple">
-<li><p>When <span class="math notranslate nohighlight">\(x=0\)</span>: <span class="math notranslate nohighlight">\(\ddot x = 2\)</span>, meaning the fixed point is <strong>unstable</strong>.</p></li>
-<li><p>When <span class="math notranslate nohighlight">\(x=1\)</span>: <span class="math notranslate nohighlight">\(\ddot x = -1\)</span>, meaning the fixed point is <strong>stable</strong>.</p></li>
-<li><p>When <span class="math notranslate nohighlight">\(x=2\)</span>: <span class="math notranslate nohighlight">\(\ddot x = 2\)</span>, meaning the fixed point is <strong>unstable</strong>.</p></li>
-</ul>
-</section>
-<section id="b-dot-x-1-e-x-2">
-<h2>(b) <span class="math notranslate nohighlight">\(\dot x = 1 - e^{-x^2}\)</span><a class="headerlink" href="#b-dot-x-1-e-x-2" title="Permalink to this headline">#</a></h2>
-<p>Let’s set <span class="math notranslate nohighlight">\(\dot x = 0\)</span> to find the fixed points:</p>
-<p>\begin{align}
-0 &amp;= 1 - e^{-x^2} \
-e^{-x^2} &amp;= 1 \
--x^2 &amp;= ln(1) \
--x^2 &amp;= 0 \
-x &amp;= 0.
-\end{align}</p>
-<p>Using the chain rule, we can evaluate the second derivative as:</p>
-<p>\begin{align}
-\ddot x = 2xe^{-x^2}
-\end{align}</p>
-<p>This second derivative evaluated at the fixed point <span class="math notranslate nohighlight">\(x=0\)</span> yields <span class="math notranslate nohighlight">\(\ddot x = 0\)</span>, meaning that we can’t say anything about the stability of this fixed point. So let’s plot <span class="math notranslate nohighlight">\(\dot x\)</span> vs. <span class="math notranslate nohighlight">\(x\)</span> to see if we can get any graphical intuition.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">x_dot</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_dot</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\dot x$&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.integrate</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\dot x$&#39;)
-</pre></div>
 </div>
-<img alt="_images/HW3_solutions_19_1.png" src="_images/HW3_solutions_19_1.png" />
-</div>
-</div>
-<p>We can now see that this fixed point would be <strong>half-stable</strong>. As the flow of <span class="math notranslate nohighlight">\(\dot x\)</span> will be towards the positive direction for all value of <span class="math notranslate nohighlight">\(x\)</span>, this will be <em>towards</em> the fixed point for <span class="math notranslate nohighlight">\(x&lt;0\)</span> and <em>away from</em> the fixed point at <span class="math notranslate nohighlight">\(x&gt;0\)</span>.</p>
-</section>
-<section id="c-dot-x-ax-x-3">
-<h2>(c) <span class="math notranslate nohighlight">\(\dot x = ax- x^3\)</span><a class="headerlink" href="#c-dot-x-ax-x-3" title="Permalink to this headline">#</a></h2>
-<section id="when-a-is-positive">
-<h3>When <span class="math notranslate nohighlight">\(a\)</span> is positive<a class="headerlink" href="#when-a-is-positive" title="Permalink to this headline">#</a></h3>
-<p>We see that <span class="math notranslate nohighlight">\(\dot x = 0\)</span> when <span class="math notranslate nohighlight">\(x=0\)</span>, making this one fixed point. The other fixed points can be found by:</p>
-<p>\begin{align}
-0 &amp;= ax - x^3 \
-x^3 &amp;= ax \
-x^2 &amp;= a.
-\end{align}</p>
-<p>We pause to note that if <span class="math notranslate nohighlight">\(a\)</span> is negative, there is no way for <span class="math notranslate nohighlight">\(x^2 = a\)</span> to be satisfied, so we only have the <span class="math notranslate nohighlight">\(x=0\)</span> fixed point in that scenario. Otherwise, we have fixed points as <span class="math notranslate nohighlight">\(x = \pm \sqrt{a}\)</span> as well.</p>
-<p>To evaluate the three fixed points, let’s look at the second derivative:</p>
-<p>\begin{align}
-\ddot x = a - 3x^2
-\end{align}</p>
-<p>Stability analysis:</p>
-<ul class="simple">
-<li><p>When <span class="math notranslate nohighlight">\(x=0\)</span>, <span class="math notranslate nohighlight">\(\ddot x = a\)</span>, meaning the fixed point is <strong>unstable</strong> in this case of positive <span class="math notranslate nohighlight">\(a\)</span></p></li>
-<li><p>When <span class="math notranslate nohighlight">\(x = \sqrt{a}\)</span>, <span class="math notranslate nohighlight">\(\ddot x = -2a\)</span>, meaning the fixed point is <strong>stable</strong></p></li>
-<li><p>When <span class="math notranslate nohighlight">\(x = -\sqrt{a}\)</span>, <span class="math notranslate nohighlight">\(\ddot x = -2a\)</span>, meaning the fixed point is <strong>stable</strong></p></li>
-</ul>
-</section>
-<section id="when-a-0">
-<h3>When <span class="math notranslate nohighlight">\(a=0\)</span><a class="headerlink" href="#when-a-0" title="Permalink to this headline">#</a></h3>
-<p>When <span class="math notranslate nohighlight">\(a=0\)</span>, <span class="math notranslate nohighlight">\(\dot x = -x^3\)</span>, which will only have a fixed point at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
-<p>The second derivative will be <span class="math notranslate nohighlight">\(\ddot x = -3x^2\)</span>, which evaluates to 0, when <span class="math notranslate nohighlight">\(x=0\)</span>. This means we must plot the result to interpret the stability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">x_dot</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_dot</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\dot x$&#39;</span><span class="p">)</span>
+<span class="c1"># Initial condition</span>
+<span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+
+<span class="c1"># Integrate ODES</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">LV_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\dot x$&#39;)
-</pre></div>
 </div>
-<img alt="_images/HW3_solutions_21_1.png" src="_images/HW3_solutions_21_1.png" />
-</div>
-</div>
-<p>We see that even though the second derivative evaluates to 0 when <span class="math notranslate nohighlight">\(x=0\)</span>, the overall behavior through the fixed point has a negative slope, making it a <strong>stable</strong> fixed point.</p>
-</section>
-<section id="when-a-is-negative">
-<h3>When <span class="math notranslate nohighlight">\(a\)</span> is negative<a class="headerlink" href="#when-a-is-negative" title="Permalink to this headline">#</a></h3>
-<p>As we established above, there is also only the fixed point at <span class="math notranslate nohighlight">\(x=0\)</span> when <span class="math notranslate nohighlight">\(a\)</span> is negative.</p>
-<p>When we evaluate the second derivative at <span class="math notranslate nohighlight">\(x=0\)</span>, we are left with <span class="math notranslate nohighlight">\(\ddot x = a\)</span>, which will be a <strong>stable</strong> fixed point, as <span class="math notranslate nohighlight">\(a\)</span> is negative.</p>
-</section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="problem-4">
-<h1>Problem 4<a class="headerlink" href="#problem-4" title="Permalink to this headline">#</a></h1>
-<section id="a">
-<h2>(a)<a class="headerlink" href="#a" title="Permalink to this headline">#</a></h2>
-<p>Since the differential equation is defined as <span class="math notranslate nohighlight">\(\dot x = x(1-x)\)</span>, there is inherently no impact of time on the expected slope at each given <span class="math notranslate nohighlight">\(x\)</span>. Said another way, it does not matter how or when we arrived at the current value of <span class="math notranslate nohighlight">\(x\)</span>, the corresponding value of <span class="math notranslate nohighlight">\(\dot x\)</span> will always be the same. This means the slope across time will always be the same.</p>
-</section>
-<section id="b">
-<h2>(b)<a class="headerlink" href="#b" title="Permalink to this headline">#</a></h2>
-<section id="dot-x-x-1-x-2-x">
-<h3><span class="math notranslate nohighlight">\(\dot x = x(1-x)(2-x)\)</span><a class="headerlink" href="#dot-x-x-1-x-2-x" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify range of t and x values to plot over</span>
-<span class="c1"># last number is the number of arrows that will be plotted per side</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span>
-
-<span class="c1"># set up &#39;grid&#39; of (t,x) values for plot</span>
-<span class="n">T</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-
-<span class="c1"># define the x_dot function</span>
-<span class="k">def</span> <span class="nf">x_dot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-
-<span class="c1"># compute x_dot for our grid of (t,x) values</span>
-<span class="n">dXdT</span> <span class="o">=</span> <span class="n">x_dot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">X</span><span class="p">)</span>
-
-<span class="c1"># nomalize the lengths of the arrows, for cleaner plotting</span>
-<span class="n">U</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dXdT</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dXdT</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">dXdT</span>
-
-<span class="c1"># plot the U, V arrows on the T, X grid</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fcfa85deb10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0593f7990&gt;]
+</pre></div>
+</div>
+<img alt="_images/HW3_solutions_20_1.png" src="_images/HW3_solutions_20_1.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>6.4.6<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_log_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">K1</span><span class="p">,</span> <span class="n">K2</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right hand side for lotka-volterra</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Unpack x and y</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
+    
+    <span class="c1"># Compute dx/dt</span>
+    <span class="n">dx_dt</span> <span class="o">=</span> <span class="n">r1</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K1</span><span class="p">)</span> <span class="o">-</span> <span class="n">b1</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+    
+    <span class="c1"># Compute dy/dt</span>
+    <span class="n">dy_dt</span> <span class="o">=</span>  <span class="n">r2</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="o">/</span><span class="n">K2</span><span class="p">)</span> <span class="o">-</span> <span class="n">b2</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+    
+    <span class="c1"># Return the result as a NumPy array</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Initial condition</span>
+<span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span> <span class="p">])</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="mf">0.2</span> 
+<span class="n">r2</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">K1</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">K2</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># Package parameters into a tuple</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">K1</span><span class="p">,</span> <span class="n">K2</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
+
+<span class="c1"># Integrate ODES</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">double_log_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc059d255d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/HW3_solutions_24_1.png" src="_images/HW3_solutions_24_1.png" />
 </div>
 </div>
-<p>From the slope field, we can see the <span class="math notranslate nohighlight">\(x=1\)</span> is a stable fixed point, with the arrows flowing towards it. Conversely, <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=2\)</span> are unstable fixed points, with arrows flowing away from these values.</p>
-</section>
-<section id="dot-x-1-e-x-2">
-<h3><span class="math notranslate nohighlight">\(\dot x = 1 - e^{-x^2}\)</span><a class="headerlink" href="#dot-x-1-e-x-2" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify range of t and x values to plot over</span>
-<span class="c1"># last number is the number of arrows that will be plotted per side</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">epi_rhs</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right hand side for lotka-volterra</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Unpack x and y</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">xyz</span>
+    
+    <span class="c1"># Compute dx/dt</span>
+    <span class="n">dx_dt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+    
+    <span class="c1"># Compute dy/dt</span>
+    <span class="n">dy_dt</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">l</span><span class="o">*</span><span class="n">y</span>
+    
+    <span class="n">dz_dt</span> <span class="o">=</span> <span class="n">l</span><span class="o">*</span><span class="n">y</span>
+    
+    <span class="c1">#print(dx_dt,dy_dt,dz_dt)</span>
+    <span class="c1"># Return the result as a NumPy array</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">,</span> <span class="n">dz_dt</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 
-<span class="c1"># set up &#39;grid&#39; of (t,x) values for plot</span>
-<span class="n">T</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1"># Initial condition</span>
+<span class="n">xyz_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">99</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="p">])</span>
 
-<span class="c1"># define the x_dot function</span>
-<span class="k">def</span> <span class="nf">x_dot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Parameters</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">l</span> <span class="o">=</span> <span class="mf">0.01</span>
 
-<span class="c1"># compute x_dot for our grid of (t,x) values</span>
-<span class="n">dXdT</span> <span class="o">=</span> <span class="n">x_dot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># Package parameters into a tuple</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
 
-<span class="c1"># nomalize the lengths of the arrows, for cleaner plotting</span>
-<span class="n">U</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dXdT</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dXdT</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">dXdT</span>
-
-<span class="c1"># plot the U, V arrows on the T, X grid</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="c1"># Integrate ODES</span>
+<span class="n">xyz</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">epi_rhs</span><span class="p">,</span> <span class="n">xyz_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xyz</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xyz</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xyz</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fcfa867a990&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc03eeab690&gt;]
 </pre></div>
 </div>
-<img alt="_images/HW3_solutions_27_1.png" src="_images/HW3_solutions_27_1.png" />
+<img alt="_images/HW3_solutions_29_1.png" src="_images/HW3_solutions_29_1.png" />
 </div>
 </div>
-<p>From the slope field, we can see the half-stable nature of the fixed point at <span class="math notranslate nohighlight">\(x=0\)</span>, where values below 0 flow inward, but values above 0 flow away.</p>
-</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xyz</span><span class="p">[:,</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.002001077175525567
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LV_PP_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right hand side for lotka-volterra</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># Unpack x and y</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
+    
+    <span class="c1"># Compute dx/dt</span>
+    <span class="n">dx_dt</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="c1"># Compute dy/dt</span>
+    <span class="n">dy_dt</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1">#print(dx_dt,dy_dt,dz_dt)</span>
+    <span class="c1"># Return the result as a NumPy array</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Initial condition</span>
+<span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">mu</span><span class="o">=</span><span class="mi">2</span>
+
+<span class="c1"># Package parameters into a tuple</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span><span class="p">,)</span>
+
+<span class="c1"># Integrate ODES</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">LV_PP_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="n">mu</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc03fbf5ed0&gt;]
+</pre></div>
+</div>
+<img alt="_images/HW3_solutions_34_1.png" src="_images/HW3_solutions_34_1.png" />
+</div>
+</div>
 </section>
 </section>
 
