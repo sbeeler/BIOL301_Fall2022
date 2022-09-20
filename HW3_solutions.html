@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 4: Lotka-Volterra &#8212; BIOL301 Fall 2022 materials</title>
+    <title>Problem 1 &#8212; BIOL301 Fall 2022 materials</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -147,6 +147,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="04_lotka_volterra.html">
    Week 4: Lotka-Volterra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_bifurcations.html">
+   Week 5: Bifurcations
   </a>
  </li>
 </ul>
@@ -355,35 +360,91 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#integrate-by-looping-through-time">
-   Integrate by looping through time
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Problem 1
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a">
+     (a)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b">
+     (b)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     (c)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d">
+     (d)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e">
+     (e)
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plot-our-results-in-the-x-y-plane">
-   Plot our results in the x, y plane
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-2">
+   Problem 2
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     (a)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     (b)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     (c)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     (d)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     (e)
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plot-our-results-over-time">
-   Plot our results over time
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-3">
+   Problem 3
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#let-s-put-this-all-in-a-function">
-   Let’s put this all in a function!
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   6.4.2
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   6.4.6
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     (a)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     (b)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     (c)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -394,7 +455,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 4: Lotka-Volterra</h1>
+                <h1>Problem 1</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -404,35 +465,91 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#integrate-by-looping-through-time">
-   Integrate by looping through time
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Problem 1
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a">
+     (a)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b">
+     (b)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     (c)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d">
+     (d)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e">
+     (e)
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plot-our-results-in-the-x-y-plane">
-   Plot our results in the x, y plane
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-2">
+   Problem 2
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     (a)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     (b)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     (c)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     (d)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     (e)
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plot-our-results-over-time">
-   Plot our results over time
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-3">
+   Problem 3
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#let-s-put-this-all-in-a-function">
-   Let’s put this all in a function!
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   6.4.2
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   6.4.6
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     (a)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     (b)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     (c)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -444,13 +561,14 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-4-lotka-volterra">
-<h1>Week 4: Lotka-Volterra<a class="headerlink" href="#week-4-lotka-volterra" title="Permalink to this headline">#</a></h1>
-<hr/><div class="cell docutils container">
+  <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the necessary modules</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># for numerical inegration</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span>
 
 <span class="c1"># for pretty plots</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -458,294 +576,157 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad key text.latex.preview in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 123 (&#39;text.latex.preview : False&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key mathtext.fallback_to_cm in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 155 (&#39;mathtext.fallback_to_cm : True  # When True, use symbols from the Computer Modern&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key savefig.jpeg_quality in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 418 (&#39;savefig.jpeg_quality: 95       # when a jpeg is saved, the default quality parameter.&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key savefig.frameon in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 421 (&#39;savefig.frameon : True&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key verbose.level in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 472 (&#39;verbose.level  : silent      # one of silent, helpful, debug, debug-annoying&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key verbose.fileo in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 473 (&#39;verbose.fileo  : sys.stdout  # a log filename, sys.stdout or sys.stderr&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key keymap.all_axes in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 490 (&#39;keymap.all_axes : a                 # enable all axes&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key animation.avconv_path in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 501 (&#39;animation.avconv_path: avconv     # Path to avconv binary. Without full path&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+
+Bad key animation.avconv_args in file /Users/sbeeler/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/stylelib/_classic_test.mplstyle, line 503 (&#39;animation.avconv_args:            # Additional arguments to pass to avconv&#39;)
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.5.2/matplotlibrc.template
+or from the matplotlib source distribution
+</pre></div>
 </div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="problem-1">
+<h1>Problem 1<a class="headerlink" href="#problem-1" title="Permalink to this headline">#</a></h1>
+<section id="a">
+<h2>(a)<a class="headerlink" href="#a" title="Permalink to this headline">#</a></h2>
+<p>We see that the only change here is for the rabbits, with the <span class="math notranslate nohighlight">\(-2y\)</span> term becoming a <span class="math notranslate nohighlight">\(-y\)</span> term. This term corresponds to the extent to which the sheep, <span class="math notranslate nohighlight">\(y\)</span>, negatively impact the rabbits, <span class="math notranslate nohighlight">\(x\)</span>. This change means that the rabbits are now less impacted by the competition with sheep, explaining why they are now able to always take over.</p>
+</section>
+<section id="b">
+<h2>(b)<a class="headerlink" href="#b" title="Permalink to this headline">#</a></h2>
+<p>Now the term that changed is the <span class="math notranslate nohighlight">\(-x\)</span> term to <span class="math notranslate nohighlight">\(-2x\)</span>. Since this term corresponds competition between rabbits, and the strength of the competition is becoming stronger, this accounts for why the rabbits are no longer able to take over, and the sheep ultimately always take over.</p>
+</section>
+<section id="c">
+<h2>(c)<a class="headerlink" href="#c" title="Permalink to this headline">#</a></h2>
+<p>For the system of differential equations</p>
+<p>\begin{align}
+\dot x &amp;= x(3-2x-y) \tag{1} \[1em]
+\dot y &amp;= y(2-x-y) \tag{2}
+\end{align}</p>
+<p>we have a total of four fixed points:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\((0,0)\)</span> is the clearest way to ensure that <span class="math notranslate nohighlight">\(\dot x = 0\)</span> and <span class="math notranslate nohighlight">\(\dot y = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\((0, 2)\)</span> arises from when <span class="math notranslate nohighlight">\(x=0\)</span> in Equation (1) and <span class="math notranslate nohighlight">\(2-x-y=0\)</span> in Equation (2)</p></li>
+<li><p><span class="math notranslate nohighlight">\((\frac{3}{2},0)\)</span> arises when <span class="math notranslate nohighlight">\(y=0\)</span> in Equation (2) and <span class="math notranslate nohighlight">\(3-2x-y=0\)</span> in Equation (1)</p></li>
+<li><p><span class="math notranslate nohighlight">\((1,1)\)</span> arises from solving the system of equations of <span class="math notranslate nohighlight">\(3-2x-y=0\)</span> and <span class="math notranslate nohighlight">\(2-x-y=0\)</span></p></li>
+</ol>
+</section>
+<section id="d">
+<h2>(d)<a class="headerlink" href="#d" title="Permalink to this headline">#</a></h2>
+<p>Modifying the code from class, where the only piece that changes is the definition of <code class="docutils literal notranslate"><span class="pre">dx_dt</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">logistic_growth_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">K1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">K2</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modified_rabbits_v_sheep_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Right hand side for logistic growth.</span>
-<span class="sd">    Looking at two population silumtaneously </span>
+<span class="sd">    Right hand side for rabbits vs. sheep</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># unpack the x and y values</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
     
     <span class="c1"># Compute dx/dt</span>
-    <span class="n">dx_dt</span> <span class="o">=</span>  <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+    <span class="n">dx_dt</span> <span class="o">=</span>  <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
     
      <span class="c1"># Compute dy/dt</span>
-    <span class="n">dx_dt</span> <span class="o">=</span>  <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+    <span class="n">dy_dt</span> <span class="o">=</span>  <span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
 
     <span class="c1"># Return the result as a NumPy array</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="e">
+<h2>(e)<a class="headerlink" href="#e" title="Permalink to this headline">#</a></h2>
+<p>We can now use <code class="docutils literal notranslate"><span class="pre">scipy</span></code> to integrate our modified rabbits vs. sheep function over time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
 
-<span class="c1"># Initial condition</span>
-<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># loop through differnt initial conditions</span>
+<span class="k">for</span> <span class="n">xy_0</span> <span class="ow">in</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,]):</span>
 
-<span class="c1"># Parameters</span>
-<span class="n">r</span> <span class="o">=</span> <span class="mi">2</span> 
-<span class="n">K</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="c1"># Integrate ODES</span>
+    <span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">modified_rabbits_v_sheep_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="c1"># Package parameters into a tuple</span>
-<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
-<span class="c1"># Integrate ODES</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">logistic_growth_rhs</span><span class="p">,</span> <span class="n">x_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;rabbits&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;sheep&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc03fde56d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;sheep&#39;)
 </pre></div>
 </div>
 <img alt="_images/HW3_solutions_4_1.png" src="_images/HW3_solutions_4_1.png" />
 </div>
 </div>
-<section id="integrate-by-looping-through-time">
-<h2>Integrate by looping through time<a class="headerlink" href="#integrate-by-looping-through-time" title="Permalink to this headline">#</a></h2>
-<p>Below we will explore the system of equations:</p>
-<div class="math notranslate nohighlight">
-\[\dot x = x(3-x-2y)\]</div>
-<div class="math notranslate nohighlight">
-\[\dot y = y(2-x-y)\]</div>
-<p>which is one particular example of a Lotka-Volterra model. Later we will consider more generic forms, but for now we will imagine this is modeling a population of rabbits, <span class="math notranslate nohighlight">\(x(t)\)</span> and of sheep, <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
-<p>While we don’t yet have the mathematical tools for how to analyze a system of two differential equations, we can still rely on computational (i.e. numerical) methods to see how this system will change over time.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span> 
-    <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span> 
-</pre></div>
-</div>
-</div>
-</div>
+<p>Even with starting from a wide range of initial conditions, they all lead toward the stable fixed point (1,1) we found in part (c).</p>
 </section>
-<section id="plot-our-results-in-the-x-y-plane">
-<h2>Plot our results in the x, y plane<a class="headerlink" href="#plot-our-results-in-the-x-y-plane" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;rabbits&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;sheep&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/HW3_solutions_9_0.png" src="_images/HW3_solutions_9_0.png" />
-</div>
-</div>
 </section>
-<section id="plot-our-results-over-time">
-<h2>Plot our results over time<a class="headerlink" href="#plot-our-results-over-time" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population size&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;rabbit&quot;</span><span class="p">,</span><span class="s2">&quot;sheep&quot;</span><span class="p">]);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/HW3_solutions_11_0.png" src="_images/HW3_solutions_11_0.png" />
-</div>
-</div>
-</section>
-<section id="let-s-put-this-all-in-a-function">
-<h2>Let’s put this all in a function!<a class="headerlink" href="#let-s-put-this-all-in-a-function" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lotka_volterra</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span> <span class="n">y_0</span><span class="p">):</span>
-    
-    <span class="c1"># set up initial conditions</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_0</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-    <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_0</span>
-    
-    <span class="c1"># numerically integrate</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span> 
-        <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span> 
-        
-    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now we can repeatedly call our function for different starting values to see how the systems behaves over time. From the behavior, we can start to see which fixed points are stable and which are unstable.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lotka_volterra</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;rabbits&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;sheep&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/HW3_solutions_15_0.png" src="_images/HW3_solutions_15_0.png" />
-</div>
-</div>
-</section>
+<section class="tex2jax_ignore mathjax_ignore" id="problem-2">
+<h1>Problem 2<a class="headerlink" href="#problem-2" title="Permalink to this headline">#</a></h1>
 <section id="id1">
-<h2>6.4.2<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LV_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Right hand side for lotka-volterra</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Unpack x and y</span>
-    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
-    
-    <span class="c1"># Compute dx/dt</span>
-    <span class="n">dx_dt</span> <span class="o">=</span>  <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> 
-    
-    <span class="c1"># Compute dy/dt</span>
-    <span class="n">dy_dt</span> <span class="o">=</span>  <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> 
-    
-    <span class="c1"># Return the result as a NumPy array</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.integrate</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-
-<span class="c1"># Initial condition</span>
-<span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
-
-<span class="c1"># Integrate ODES</span>
-<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">LV_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0593f7990&gt;]
-</pre></div>
-</div>
-<img alt="_images/HW3_solutions_20_1.png" src="_images/HW3_solutions_20_1.png" />
-</div>
-</div>
+<h2>(a)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>The <span class="math notranslate nohighlight">\(kxy\)</span> term corresponds to the rate at which sick people, <span class="math notranslate nohighlight">\(y\)</span>, infect healthy people, <span class="math notranslate nohighlight">\(x\)</span>. This term is negative for <span class="math notranslate nohighlight">\(\dot x\)</span> as this interaction results in the number of healthy people decline. Conversely, this term is positive for <span class="math notranslate nohighlight">\(\dot y\)</span> as this interaction increases the number of sick people.</p>
+<p>The <span class="math notranslate nohighlight">\(ly\)</span> term correspond to the rate at which sick people die. Again, this term is negative for <span class="math notranslate nohighlight">\(\dot y\)</span> but positive for <span class="math notranslate nohighlight">\(\dot z\)</span> as it corresponds to a loss of sick people, but a gain of dead people.</p>
 </section>
 <section id="id2">
-<h2>6.4.6<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_log_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">K1</span><span class="p">,</span> <span class="n">K2</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Right hand side for lotka-volterra</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Unpack x and y</span>
-    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">xy</span>
-    
-    <span class="c1"># Compute dx/dt</span>
-    <span class="n">dx_dt</span> <span class="o">=</span> <span class="n">r1</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K1</span><span class="p">)</span> <span class="o">-</span> <span class="n">b1</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
-    
-    <span class="c1"># Compute dy/dt</span>
-    <span class="n">dy_dt</span> <span class="o">=</span>  <span class="n">r2</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="o">/</span><span class="n">K2</span><span class="p">)</span> <span class="o">-</span> <span class="n">b2</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
-    
-    <span class="c1"># Return the result as a NumPy array</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dx_dt</span><span class="p">,</span> <span class="n">dy_dt</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time points we want for the solution</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-
-<span class="c1"># Initial condition</span>
-<span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span> <span class="p">])</span>
-
-<span class="c1"># Parameters</span>
-<span class="n">r1</span> <span class="o">=</span> <span class="mf">0.2</span> 
-<span class="n">r2</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">K1</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">K2</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">b1</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">b2</span> <span class="o">=</span> <span class="mf">0.01</span>
-
-<span class="c1"># Package parameters into a tuple</span>
-<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">K1</span><span class="p">,</span> <span class="n">K2</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
-
-<span class="c1"># Integrate ODES</span>
-<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">double_log_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc059d255d0&gt;]
-</pre></div>
-</div>
-<img alt="_images/HW3_solutions_24_1.png" src="_images/HW3_solutions_24_1.png" />
-</div>
-</div>
+<h2>(b)<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>A more complete model might include a population of vaccinated people or a group of people who were previously sick, but have since recovered. These people might importantly have a different rate at which they become sick and/or a different rate at which they die were they to become sick. A more complete model might consider these nuances.</p>
+</section>
+<section id="id3">
+<h2>(c)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">epi_rhs</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Right hand side for lotka-volterra</span>
+<span class="sd">    Right hand side for epidemic model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Unpack x and y</span>
     <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">xyz</span>
@@ -786,38 +767,51 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
+<section id="id4">
+<h2>(d)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xyz</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xyz</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xyz</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xyz</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span> <span class="s2">&quot;sick&quot;</span><span class="p">,</span> <span class="s2">&quot;dead&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;number of people&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc03eeab690&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;number of people&#39;)
 </pre></div>
 </div>
-<img alt="_images/HW3_solutions_29_1.png" src="_images/HW3_solutions_29_1.png" />
+<img alt="_images/HW3_solutions_9_1.png" src="_images/HW3_solutions_9_1.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xyz</span><span class="p">[:,</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.002001077175525567
-</pre></div>
-</div>
-</div>
-</div>
+<p>Qualitatively, we see that the number of healthy people declines as the number of sick and dead people increases. This makes sense with how this model is set up, with there being no way for people to re-enter the healthy population.</p>
+</section>
+<section id="id5">
+<h2>(e)<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>As mentioned at the start of the prompt, this model considers only a short time frame, where all deaths can be attributed to the epidemic and not other causes. A more complete model would allow for the birth of new healthy people, as well as the death of people due to other causes. In addition to the modifications mentioned in part (b), this would make for a more complete model of an epidemic.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="problem-3">
+<h1>Problem 3<a class="headerlink" href="#problem-3" title="Permalink to this headline">#</a></h1>
+<section id="id6">
+<h2>(a)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The <span class="math notranslate nohighlight">\(aR\)</span> term corresponds to the growth/birth of rabbits.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(-bRF\)</span> term corresponds to the death of rabbits as a result of being preyed on by the foxes</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(-cF\)</span> term corresponds to the death of foxes, likely by natural causes.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(dRF\)</span> term corresponds to the growth/birth of foxes as a result of preying on rabbits.</p></li>
+</ul>
+<p>This model differs from rabbits vs. sheep, in that one population has a <em>positive</em> effect on the other. With the rabbits vs. sheep, they strictly competed with each other, with the existence of one always being to the detriment of the other.</p>
+</section>
+<section id="id7">
+<h2>(b)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LV_PP_rhs</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Right hand side for lotka-volterra</span>
+<span class="sd">    Right hand side for lotka-volterra, predator-prey model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># Unpack x and y</span>
@@ -845,31 +839,52 @@ title="Print to PDF"
 <span class="n">xy_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 
 <span class="c1"># Parameters</span>
-<span class="n">mu</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">mu</span><span class="o">=</span><span class="mf">0.1</span>
 
 <span class="c1"># Package parameters into a tuple</span>
 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span><span class="p">,)</span>
 
 <span class="c1"># Integrate ODES</span>
-<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">LV_PP_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="n">mu</span><span class="p">,))</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">LV_PP_rhs</span><span class="p">,</span> <span class="n">xy_0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;rabbits&quot;</span><span class="p">,</span><span class="s2">&quot;foxes&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc03fbf5ed0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;number&#39;)
 </pre></div>
 </div>
-<img alt="_images/HW3_solutions_34_1.png" src="_images/HW3_solutions_34_1.png" />
+<img alt="_images/HW3_solutions_13_1.png" src="_images/HW3_solutions_13_1.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;rabbits&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;foxes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;foxes&#39;)
+</pre></div>
+</div>
+<img alt="_images/HW3_solutions_14_1.png" src="_images/HW3_solutions_14_1.png" />
+</div>
+</div>
+</section>
+<section id="id8">
+<h2>(c)<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<p>Extending from what we covered in part (a), these oscillation arises from the the opposing effects that rabbits and foxes have on each other. While foxes benefit from the rabbits, the rabbits are clearly negatively impacted by the foxes. These opposing effects cause oscillations as the foxes predate the rabbits. Initially there may be a large number of rabbits, allowing the foxes’ numbers to rise. But eventually the foxes will over-predate the rabbits, ultimately cause both their numbers to fall. Such oscillations are not possible in the case of the rabbits and the sheep since they both negatively impact each other.</p>
 </section>
 </section>
 
