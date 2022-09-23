@@ -509,19 +509,28 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>Below is my solution for this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerically integrate by looping through N</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/var/folders/7y/26f264rd4ldbcc1h172r7jkh0000gn/T/ipykernel_48700/4170103880.py&quot;</span><span class="gt">, line </span><span class="mi">3</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_a</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">a</span>
+
+    <span class="n">b</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N_a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N_a</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_b</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">b</span>
     
-    <span class="o">^</span>
-<span class="ne">SyntaxError</span>: unexpected EOF while parsing
+    <span class="n">c</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N_b</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N_b</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_c</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span>
+    
+    <span class="n">d</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N_c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N_c</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># final approximation for the new value of N</span>
+    <span class="n">N_new</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
+    
+    <span class="c1"># update the N array</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_new</span>
 </pre></div>
 </div>
 </div>
@@ -543,10 +552,70 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc2b6c9cb90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd9c6379490&gt;
 </pre></div>
 </div>
-<img alt="_images/05_midterm1_review_6_1.png" src="_images/05_midterm1_review_6_1.png" />
+<img alt="_images/05_midterm1_review_7_1.png" src="_images/05_midterm1_review_7_1.png" />
+</div>
+</div>
+<p>It got annoying to keep typing out the whole logistic equation, so another way to do this would be to actually define a function, <code class="docutils literal notranslate"><span class="pre">f</span></code> that we can call repeatedly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; function for logistic growth &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">N</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this function in hand, we can now call it within our Runge-Kutta approximation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerically integrate by looping through N</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_a</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">a</span>
+
+    <span class="n">b</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">N_a</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_b</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">b</span>
+    
+    <span class="n">c</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">N_b</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_c</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span>
+    
+    <span class="n">d</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">N_c</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># final approximation for the new value of N</span>
+    <span class="n">N_new</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
+    
+    <span class="c1"># update the N array</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_new</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The notation is now a little simpler, and also allows us to more easily repurpose this code for a different differential equation. The only piece we would have to change is the function <code class="docutils literal notranslate"><span class="pre">f</span></code>, as opposed to the content of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+
+<span class="n">soln_top</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">N_0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">times</span><span class="p">)</span>
+<span class="n">soln_bottom</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="n">N_0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">times</span><span class="p">))</span>
+<span class="n">soln</span> <span class="o">=</span> <span class="n">soln_top</span> <span class="o">/</span> <span class="n">soln_bottom</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">soln</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;known solution&quot;</span><span class="p">,</span> <span class="s2">&quot;numerical integration&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd9c638f910&gt;
+</pre></div>
+</div>
+<img alt="_images/05_midterm1_review_13_1.png" src="_images/05_midterm1_review_13_1.png" />
 </div>
 </div>
 </section>

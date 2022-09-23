@@ -150,6 +150,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="04_scipy_integration.html">
+   Week 4: Numerical integration with scipy
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="05_bifurcations.html">
    Week 5: Bifurcations
   </a>
@@ -508,14 +513,22 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerically integrate by looping through N</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/var/folders/7y/26f264rd4ldbcc1h172r7jkh0000gn/T/ipykernel_48167/3781181443.py&quot;</span><span class="gt">, line </span><span class="mi">2</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-                                  <span class="o">^</span>
-<span class="ne">SyntaxError</span>: unexpected EOF while parsing
+    <span class="n">a</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_a</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">a</span>
+
+    <span class="n">b</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N_a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N_a</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_b</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">b</span>
+    
+    <span class="n">c</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N_b</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N_b</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">N_c</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span>
+    
+    <span class="n">d</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N_c</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N_c</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+    
+    <span class="c1"># final approximation for the new value of N</span>
+    <span class="n">N_new</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
+    
+    <span class="c1"># update the N array</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_new</span>
 </pre></div>
 </div>
 </div>
@@ -537,7 +550,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa0bfee6e50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa0c0019450&gt;
 </pre></div>
 </div>
 <img alt="_images/05_midterm1_review_filled_6_1.png" src="_images/05_midterm1_review_filled_6_1.png" />
