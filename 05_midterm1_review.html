@@ -371,22 +371,15 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Midterm 1 Review
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fourth-order-runge-kutta-method">
    Fourth-order Runge-Kutta method
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#re-vamped-version">
-     Re-vamped version
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#re-vamped-version">
+   Re-vamped version
+  </a>
  </li>
 </ul>
 
@@ -407,22 +400,15 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Midterm 1 Review
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fourth-order-runge-kutta-method">
    Fourth-order Runge-Kutta method
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#re-vamped-version">
-     Re-vamped version
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#re-vamped-version">
+   Re-vamped version
+  </a>
  </li>
 </ul>
 
@@ -449,9 +435,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="fourth-order-runge-kutta-method">
-<h1>Fourth-order Runge-Kutta method<a class="headerlink" href="#fourth-order-runge-kutta-method" title="Permalink to this headline">#</a></h1>
+<section id="fourth-order-runge-kutta-method">
+<h2>Fourth-order Runge-Kutta method<a class="headerlink" href="#fourth-order-runge-kutta-method" title="Permalink to this headline">#</a></h2>
 <p>Lastly, an even more nuanced approximation would incorporate even more points, such as the fourth-order Runge-Kutta method. Here we start to see the trade-off between the number of calculations required and the quality of the approximation. While Runge-Kutta will perform better the the Euler method, it require a total of five calculations for every time step. For this problem, the additional computation won’t be that noticeable, this may be something you have to consider for more complicated problems.</p>
 <p>In general for a differential equation <span class="math notranslate nohighlight">\(f(x)\)</span>, the approximation for <span class="math notranslate nohighlight">\(x\)</span> at time <span class="math notranslate nohighlight">\(t + \Delta t\)</span> is computed as follows</p>
 <div class="math notranslate nohighlight">
@@ -464,6 +449,7 @@ title="Print to PDF"
 \[k_4=f\left(x_t+k_3\right) \Delta t \]</div>
 <div class="math notranslate nohighlight">
 \[x_{t+\Delta t} = x_t + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)\]</div>
+</section>
 <section id="re-vamped-version">
 <h2>Re-vamped version<a class="headerlink" href="#re-vamped-version" title="Permalink to this headline">#</a></h2>
 <p>This notation was a little confusing, with <span class="math notranslate nohighlight">\(f(x)\)</span> being a generic term, but our specific case using different terminology. Also, this approach gets even more confusing for more complicated functions such as logistic growth. In this case, let’s consider the function <span class="math notranslate nohighlight">\(f(N)\)</span>, which will be the differential equation for logistic growth:</p>
