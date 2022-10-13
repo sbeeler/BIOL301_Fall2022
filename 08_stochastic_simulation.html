@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 8: Stochastic simulations &#8212; BIOL301 Fall 2022 materials</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Week 7: Modeling mRNA and protein production" href="07_gene_expression.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/download.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">BIOL301 Fall 2022 materials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to the BIOL301 Webpage
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_configuring_computer.html">
+   Week 1: Configuring your computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro_to_jupyter.html">
+   Week 1: Introduction to JupyterLab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_terminal_commands.html">
+   Week 1: Terminal Commands
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro_to_latex.html">
+   Week 1: Introduction to LaTeX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_numerical_integration.html">
+   Week 3: Numerical Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_slope_fields.html">
+   Week 3: Slope fields and other graphical analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_lotka_volterra.html">
+   Week 4: Lotka-Volterra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_scipy_integration.html">
+   Week 4: Numerical integration with scipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_bifurcations.html">
+   Week 5: Bifurcations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_midterm1_review.html">
+   Midterm 1 Review
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_insect.html">
+   Week 6: Insect outbreak with interactive plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_gene_expression.html">
+   Week 7: Modeling mRNA and protein production
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 8: Stochastic simulations
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/08_stochastic_simulation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2F08_stochastic_simulation.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/08_stochastic_simulation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning Objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-dynamical-equations">
+   The dynamical equations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#macroscale-equations">
+     Macroscale equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-gillespie-algorithm">
+   The Gillespie algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-through-an-example">
+   Working through an example:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coding-up-the-gillespie-simulation">
+   Coding up the Gillespie simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-1">
+   Problem 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-2">
+   Problem 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-3">
+   Problem 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-4">
+   Problem 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 8: Stochastic simulations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning Objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-dynamical-equations">
+   The dynamical equations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#macroscale-equations">
+     Macroscale equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-gillespie-algorithm">
+   The Gillespie algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-through-an-example">
+   Working through an example:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coding-up-the-gillespie-simulation">
+   Coding up the Gillespie simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-1">
+   Problem 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-2">
+   Problem 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-3">
+   Problem 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-4">
+   Problem 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="week-8-stochastic-simulations">
+<h1>Week 8: Stochastic simulations<a class="headerlink" href="#week-8-stochastic-simulations" title="Permalink to this headline">#</a></h1>
+<hr><section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Convert a system of differential equations into a set of state changes and propensities</p></li>
+<li><p>Sample from an exponential distribution to simulate how long it will take for Poisson process to occur</p></li>
+<li><p>Repeatedly use the propensities and draws from an exponential distribution to stochastically simulate a system evolving over time</p></li>
+<li><p>Compare the results of stochastic simulation to the deterministic behavior</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numba</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will use the same strategy for simulating dynamics of a differential equation. We will find a way to <em>sample</em> out of the distribution that is governed by the master equation. This technique was pioneered by Dan Gillespie in the last 70s. For that reason, these sampling techniques are often called <strong>Gillespie simulations</strong>. The algorithm is sometimes referred to as a <strong>stochastic simulation algorithm</strong>, or SSA.</p>
+<p>Here, we will explore how this algorithm works by looking at simple production of a protein.</p>
+</section>
+<section id="the-dynamical-equations">
+<h2>The dynamical equations<a class="headerlink" href="#the-dynamical-equations" title="Permalink to this headline">#</a></h2>
+<p>For simple protein production, we have the following reactions.</p>
+<p>\begin{align}
+\text{DNA} \rightarrow \text{mRNA} \rightarrow \text{protein}
+\end{align}</p>
+<section id="macroscale-equations">
+<h3>Macroscale equations<a class="headerlink" href="#macroscale-equations" title="Permalink to this headline">#</a></h3>
+<p>As we’ve seen before, the deterministic dynamics, which describe mean concentrations over a large population of cells, are described by the ODEs</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\mathrm{d}m}{\mathrm{d}t} = \beta_m - \gamma_m m,\]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{\mathrm{d}p}{\mathrm{d}t} = \beta_p m - \gamma_p p.\]</div>
+</section>
+</section>
+<section id="the-gillespie-algorithm">
+<h2>The Gillespie algorithm<a class="headerlink" href="#the-gillespie-algorithm" title="Permalink to this headline">#</a></h2>
+<p>The transition probabilities are also called <strong>propensities</strong> in the context of stochastic simulation. The propensity for a given transition, say indexed <span class="math notranslate nohighlight">\(i\)</span>, is denoted as <span class="math notranslate nohighlight">\(a_i\)</span>.</p>
+<p>To cast this problem for a Gillespie simulation, we can write each change of state (moving either the copy number of mRNA or protein up or down by 1 in this case) and their respective propensities.</p>
+<p>\begin{align}
+\begin{array}{ll}
+\text{reaction, }r_i &amp; \text{propensity, } a_i \
+m \rightarrow m+1,;;;; &amp; \beta_m \[0.3em]
+m \rightarrow m-1, ;;;; &amp; \gamma_m m\[0.3em]
+p \rightarrow p+1, ;;;; &amp; \beta_p m \[0.3em]
+p \rightarrow p-1, ;;;; &amp; \gamma_p p.
+\end{array}
+\end{align}</p>
+<p>The basic idea is that events (such as those outlined above) are rare, discrete, separate events.  I.e., each event is an arrival of a Poisson process.  The Gillespie algorithm starts with some state, <span class="math notranslate nohighlight">\((m_0,p_0)\)</span>.  Then a state change, <em>any</em> state change, will happen in some time <span class="math notranslate nohighlight">\(\Delta t\)</span> that has a certain probability distribution (which we will show is Exponential momentarily).  The probability that the state change that happens is reaction <span class="math notranslate nohighlight">\(j\)</span> is proportional to <span class="math notranslate nohighlight">\(a_j\)</span>.  That is to say, state changes with high propensities are more likely to occur.  Thus, choosing which of the <span class="math notranslate nohighlight">\(n\)</span> state changes happens in <span class="math notranslate nohighlight">\(\Delta t\)</span> is a matter of drawing an integer <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\([1,n]\)</span> where the probability of drawing <span class="math notranslate nohighlight">\(j\)</span> is</p>
+<p>\begin{align}
+\frac{a_j}{\sum_i a_i}.
+\end{align}</p>
+<p>Now, how do we determine how long the state change took? We can consider each possible stage change as a Poisson process that occurs with rate <span class="math notranslate nohighlight">\(a_i\)</span>. And as we saw last semester, the time it takes for arrival of a <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_point_process">Poisson process</a> is <a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponentially distributed</a>. So the wait time for each given event will be exponentially distributed with mean wait time of <span class="math notranslate nohighlight">\(1/a_i\)</span>.</p>
+<p>But we are interested in the chance of <strong>any</strong> of our state changes occurring. Since we consider each of the possible events as being independent from each other, the rate at with <strong>any</strong> event occurs will be the sum of all <span class="math notranslate nohighlight">\(a_i\)</span>, and accordingly the wait time for <em>something</em> to occur will be exponentially distributed with mean <span class="math notranslate nohighlight">\(1/\sum a_i\)</span>.</p>
+<p>With these consideration in place, the Gillespie algorithm then proceeds as follows:</p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Choose an initial condition, e.g., <span class="math notranslate nohighlight">\(m = p = 0\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<ol class="simple">
+<li><p>Calculate the propensity for each of the enumerated state changes.  The propensities may be functions of <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(p\)</span>, so they need to be recalculated for every <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(p\)</span> we encounter.</p></li>
+<li><p>Choose how much time the reaction will take by drawing out of an exponential distribution with a mean equal to <span class="math notranslate nohighlight">\(\left(\sum_i a_i\right.)^{-1}\)</span>.  This means that a change arises from a Poisson process.</p></li>
+<li><p>Choose what state change will happen by drawing a sample out of the discrete distribution where <span class="math notranslate nohighlight">\(P_i = \left.a_i\middle/\left(\sum_i a_i\right)\right.\)</span>.  In other words, the probability that a state change will be chosen is proportional to its propensity.</p></li>
+<li><p>Increment time by the time step you chose in step 3.</p></li>
+<li><p>Update the states according to the state change you choose in step 4.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(t\)</span> is less than your pre-determined stopping time, go to step 2. Else stop.</p></li>
+</ol>
+</section>
+<section id="working-through-an-example">
+<h2>Working through an example:<a class="headerlink" href="#working-through-an-example" title="Permalink to this headline">#</a></h2>
+<p>Before we code the full Gillespie simulation, let’s work through an example with some concrete numbers to get a sense of how the simulation will work.</p>
+<p>Let’s say we are starting with :</p>
+<ul class="simple">
+<li><p>1 mRNA</p></li>
+<li><p>production rate of 10 transcripts per min</p></li>
+<li><p>degradation rate of 1 per minute per transcript</p></li>
+</ul>
+<p>In this case, what would be our two propensities?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>production_prop = ???
+degradation_prop = ???
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now sum up our propensities, to get a sense of how often we expect “something” to happen, regardless of which specific even it is. (We will figure out which event occurred in the next step!)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_prop</span> <span class="o">=</span> <span class="n">production_prop</span> <span class="o">+</span> <span class="n">degradation_prop</span>
+<span class="n">time_elapsed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">total_prop</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time_elapsed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Running the cell above multiple times will give us a sense of the possible variability in these processes. On average, we expect something to happen every one-eleventh of a minute, but the actually time will vary based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_distribution">exponential distribution</a>.</p>
+<p>Finally, let’s determine which of the two events will occur. We can <code class="docutils literal notranslate"><span class="pre">random.choices</span></code> for this, where our two possible state changes are weighted by their propensities specified above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">event</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">([</span><span class="s2">&quot;production&quot;</span><span class="p">,</span> <span class="s2">&quot;degradation&quot;</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="n">production_prop</span><span class="p">,</span> <span class="n">degradation_prop</span><span class="p">))</span>
+<span class="n">event</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="coding-up-the-gillespie-simulation">
+<h2>Coding up the Gillespie simulation<a class="headerlink" href="#coding-up-the-gillespie-simulation" title="Permalink to this headline">#</a></h2>
+<p>Now that we have a concrete example for a single step of the Gillespie simulation, let’s now code the entire simulation. For now we will only consider the number of mRNAs, but you will consider the number of proteins as well in the homework.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># specifying the parameters
+beta = 10 # per min
+gamma = 1 # per min, per transcript
+
+# initializing the number of mRNAs and the time
+m = [1]
+t = [0]
+
+# how long we want run simulation for
+total_time = 10 # mins
+
+while t[-1] &lt; total_time:
+    
+    # specify the propensities for the possible state change
+    production_prop = ???
+    degradation_prop = ???
+    
+    # add up all the propensities
+    total_rate = ???
+    
+    # determine how much time elapses before &quot;something+ happens
+    time_elapsed = ???
+    
+    # update time array 
+    t.append( ??? )
+    
+    # randomly choose which event happens. weighted by their propensities
+    event = 
+    
+    # update mRNA list based on which event happend
+    if event == &quot;production&quot;:
+        m.append( ??? )
+        
+    if event == &quot;degradation&quot;:
+        m.append( ??? )
+</pre></div>
+</div>
+</div>
+</div>
+<p>If everything went well, the plot below show tend towards 100 mRNAs, but with some fluctuations due to the randomness!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;number of mRNAS&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-1">
+<h2>Problem 1<a class="headerlink" href="#problem-1" title="Permalink to this headline">#</a></h2>
+<p>Due to the random nature of a stochastic process, a single simulation may not be representative. To get a better sense of how this system will behave <em>on average</em>, use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to repeat our stochastic simulation 100 times. Plot each of these simulations on the same plot to see how much variability there can be from simulation to simulation. Remember you can use the <code class="docutils literal notranslate"><span class="pre">alpha</span></code> variable to make your plots more transparent and easier to visualize many on top of each other.</p>
+</section>
+<section id="problem-2">
+<h2>Problem 2<a class="headerlink" href="#problem-2" title="Permalink to this headline">#</a></h2>
+<p>Numerically integrate the <span class="math notranslate nohighlight">\( \frac{\mathrm{d}m}{\mathrm{d}t} = \beta_m - \gamma_m m\)</span> differential equation, using one of our previous methods (Euler, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>, etc.). Plot the results of your numerical integration on top of your stochastic simulations from Problem 2. How do the results compare?</p>
+</section>
+<section id="problem-3">
+<h2>Problem 3<a class="headerlink" href="#problem-3" title="Permalink to this headline">#</a></h2>
+<p>Expand our simulation from class to now keep track of both an mRNA and protein populations.</p>
+<p>\begin{align}
+\begin{array}{ll}
+\text{reaction, }r_i &amp; \text{propensity, } a_i \
+m \rightarrow m+1,;;;; &amp; \beta_m \[0.3em]
+m \rightarrow m-1, ;;;; &amp; \gamma_m m\[0.3em]
+p \rightarrow p+1, ;;;; &amp; \beta_p m \[0.3em]
+p \rightarrow p-1, ;;;; &amp; \gamma_p p.
+\end{array}
+\end{align}</p>
+<p>Below I specify the parameters you should use for this simulation. Since the number of mRNAs and the number of proteins are substantially different, plot their trajectories over time on separate plots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specifying the parameters</span>
+<span class="n">beta_m</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># per min</span>
+<span class="n">gamma_m</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># per min, per transcript</span>
+<span class="n">beta_p</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># per min</span>
+<span class="n">gamma_p</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># per min, per protein</span>
+
+<span class="c1"># how long we want run simulation for</span>
+<span class="n">total_time</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># mins</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-4">
+<h2>Problem 4<a class="headerlink" href="#problem-4" title="Permalink to this headline">#</a></h2>
+<p>Returning to the original equations what are the expected steady-state / fixed point values for the number of mRNAs and proteins? Calculate precise numbers based on the parameter values we’ve used here. How do these expected value compare to what you see in your simulation?</p>
+</section>
+<section id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">#</a></h2>
+<p>Materials for this notebook were borrowed from © 2019 <a class="reference external" href="http://bois.caltech.edu/teaching.html">Justin Bois</a>, as licensed under a Creative Commons Attribution License CC-BY 4.0. All code contained herein is licensed under an MIT license.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="07_gene_expression.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 7: Modeling mRNA and protein production</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dr. Suzannah Beeler<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
