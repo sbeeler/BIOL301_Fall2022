@@ -585,9 +585,8 @@ p \rightarrow p-1, ;;;; &amp; \gamma_p p.
 \end{array}
 \end{align}</p>
 <p>The basic idea is that events (such as those outlined above) are rare, discrete, separate events.  I.e., each event is an arrival of a Poisson process.  The Gillespie algorithm starts with some state, <span class="math notranslate nohighlight">\((m_0,p_0)\)</span>.  Then a state change, <em>any</em> state change, will happen in some time <span class="math notranslate nohighlight">\(\Delta t\)</span> that has a certain probability distribution (which we will show is Exponential momentarily).  The probability that the state change that happens is reaction <span class="math notranslate nohighlight">\(j\)</span> is proportional to <span class="math notranslate nohighlight">\(a_j\)</span>.  That is to say, state changes with high propensities are more likely to occur.  Thus, choosing which of the <span class="math notranslate nohighlight">\(n\)</span> state changes happens in <span class="math notranslate nohighlight">\(\Delta t\)</span> is a matter of drawing an integer <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\([1,n]\)</span> where the probability of drawing <span class="math notranslate nohighlight">\(j\)</span> is</p>
-<p>\begin{align}
-\frac{a_j}{\sum_i a_i}.
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[ \frac{a_j}{\sum_i a_i} \]</div>
 <p>Now, how do we determine how long the state change took? We can consider each possible stage change as a Poisson process that occurs with rate <span class="math notranslate nohighlight">\(a_i\)</span>. And as we saw last semester, the time it takes for arrival of a <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_point_process">Poisson process</a> is <a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponentially distributed</a>. So the wait time for each given event will be exponentially distributed with mean wait time of <span class="math notranslate nohighlight">\(1/a_i\)</span>.</p>
 <p>But we are interested in the chance of <strong>any</strong> of our state changes occurring. Since we consider each of the possible events as being independent from each other, the rate at with <strong>any</strong> event occurs will be the sum of all <span class="math notranslate nohighlight">\(a_i\)</span>, and accordingly the wait time for <em>something</em> to occur will be exponentially distributed with mean <span class="math notranslate nohighlight">\(1/\sum a_i\)</span>.</p>
 <p>With these consideration in place, the Gillespie algorithm then proceeds as follows:</p>
@@ -653,12 +652,12 @@ degradation_prop = ???
 beta = 10 # per min
 gamma = 1 # per min, per transcript
 
+# how long we want run simulation for
+total_time = 10 # mins
+
 # initializing the number of mRNAs and the time
 m = [1]
 t = [0]
-
-# how long we want run simulation for
-total_time = 10 # mins
 
 while t[-1] &lt; total_time:
     
@@ -688,7 +687,7 @@ while t[-1] &lt; total_time:
 </div>
 </div>
 </div>
-<p>If everything went well, the plot below show tend towards 100 mRNAs, but with some fluctuations due to the randomness!</p>
+<p>If everything went well, the plot below show tend towards 10 mRNAs, but with some fluctuations due to the randomness!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
@@ -737,7 +736,7 @@ p \rightarrow p-1, ;;;; &amp; \gamma_p p.
 </section>
 <section id="problem-4">
 <h2>Problem 4<a class="headerlink" href="#problem-4" title="Permalink to this headline">#</a></h2>
-<p>Returning to the original equations what are the expected steady-state / fixed point values for the number of mRNAs and proteins? Calculate precise numbers based on the parameter values we’ve used here. How do these expected value compare to what you see in your simulation?</p>
+<p>Returning to the original equations, what are the expected steady-state / fixed point values for the number of mRNAs and proteins? Calculate precise numbers based on the parameter values we’ve used here. How do these expected value compare to what you see in your simulation?</p>
 </section>
 <section id="attribution">
 <h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">#</a></h2>
