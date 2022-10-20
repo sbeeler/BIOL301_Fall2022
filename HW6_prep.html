@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -174,7 +176,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="08_stochastic_simulation.html">
-   Week 8: Stochastic simulations
+   Week 8: Stochastic simulations – Gillespie Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_master_equation.html">
+   Week 9: Numerically integrating a probability distribution – Master equations
   </a>
  </li>
 </ul>
@@ -429,13 +436,17 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">bokeh.plotting</span>
 
 <span class="n">bokeh</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">output_notebook</span><span class="p">()</span>
+
+<span class="c1"># for pretty plots</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div class="bk-root">
         <a href="https://bokeh.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-        <span id="1007">Loading BokehJS ...</span>
+        <span id="1004">Loading BokehJS ...</span>
     </div>
 </div><script type="application/javascript">(function(root) {
   function now() {
@@ -594,7 +605,7 @@ const JS_MIME_TYPE = 'application/javascript';
      "</div>"}};
 
   function display_loaded() {
-    const el = document.getElementById("1007");
+    const el = document.getElementById("1004");
     if (el != null) {
       el.textContent = "BokehJS is loading...";
     }
@@ -700,7 +711,7 @@ if (force === true) {
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       root._bokeh_failed_load = true;
     } else if (force !== true) {
-      const cell = $(document.getElementById("1007")).parents('.cell').data().cell;
+      const cell = $(document.getElementById("1004")).parents('.cell').data().cell;
       cell.output_area.append_execute_result(NB_LOAD_WARNING)
     }
   }
@@ -980,6 +991,99 @@ if (force === true) {
 </div>
 </div>
 </div>
+<p>\begin{aligned}
+&amp;\dot{a}=\frac{\beta_a}{\left(\frac{k_b}{b}\right)^n+1}-\gamma_a a \
+&amp;\dot{b}=\frac{\beta_b}{\left(\frac{k_a}{a}\right)^n+1}-\gamma_b b
+\end{aligned}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<span class="n">gamma_x</span> <span class="o">=</span> <span class="n">gamma_y</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># per min</span>
+<span class="n">beta_x</span> <span class="o">=</span> <span class="n">beta_y</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># per min </span>
+<span class="n">k_x</span> <span class="o">=</span> <span class="n">k_y</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># copy number</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># values of A and B to plot over</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># define nullclines</span>
+<span class="n">null_x</span> <span class="o">=</span> <span class="n">beta_x</span> <span class="o">/</span> <span class="p">((</span><span class="n">k_y</span><span class="o">/</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">gamma_x</span> 
+<span class="n">null_y</span> <span class="o">=</span> <span class="n">beta_y</span> <span class="o">/</span> <span class="p">((</span><span class="n">k_x</span><span class="o">/</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">gamma_y</span> 
+
+<span class="c1"># plot nullclines and label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">null_x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">null_y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;a copy number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;b  copy number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;a nullcline&#39;</span><span class="p">,</span><span class="s1">&#39;b nullcline&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sbeeler/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:12: RuntimeWarning: divide by zero encountered in true_divide
+  if sys.path[0] == &#39;&#39;:
+/Users/sbeeler/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:13: RuntimeWarning: divide by zero encountered in true_divide
+  del sys.path[0]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f827e8a7450&gt;
+</pre></div>
+</div>
+<img alt="_images/HW6_prep_14_2.png" src="_images/HW6_prep_14_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<span class="n">gamma_x</span> <span class="o">=</span> <span class="n">gamma_y</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># per min</span>
+<span class="n">beta_x</span> <span class="o">=</span> <span class="n">beta_y</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># per min </span>
+<span class="n">k_x</span> <span class="o">=</span> <span class="n">k_y</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># copy number</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># values of A and B to plot over</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># define nullclines</span>
+<span class="n">null_x</span> <span class="o">=</span> <span class="n">beta_x</span> <span class="o">/</span> <span class="p">((</span><span class="n">k_y</span><span class="o">/</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">gamma_x</span> 
+<span class="n">null_y</span> <span class="o">=</span> <span class="n">beta_y</span> <span class="o">/</span> <span class="p">((</span><span class="n">k_x</span><span class="o">/</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">gamma_y</span> 
+
+<span class="c1"># plot nullclines and label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">null_x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">null_y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;a copy number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;b  copy number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;a nullcline&#39;</span><span class="p">,</span><span class="s1">&#39;b nullcline&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sbeeler/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:12: RuntimeWarning: divide by zero encountered in true_divide
+  if sys.path[0] == &#39;&#39;:
+/Users/sbeeler/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:13: RuntimeWarning: divide by zero encountered in true_divide
+  del sys.path[0]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f827eb92210&gt;
+</pre></div>
+</div>
+<img alt="_images/HW6_prep_15_2.png" src="_images/HW6_prep_15_2.png" />
+</div>
+</div>
+<p>\begin{align}
+\begin{array}{ll}
+\text{reaction, }r_i &amp; \text{propensity, } a_i \
+m \rightarrow m+1,;;;; &amp;  \[0.3em]
+m \rightarrow m-1, ;;;; &amp; \[0.3em]
+p \rightarrow p+1, ;;;; &amp; \[0.3em]
+p \rightarrow p-1, ;;;; &amp;
+\end{array}
+\end{align}</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\mathrm{d}m}{\mathrm{d}t} = \beta_m p - \gamma_m m\]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{\mathrm{d}p}{\mathrm{d}t} = \beta_p m - \gamma_p p\]</div>
 
     <script type="text/x-thebe-config">
     {
