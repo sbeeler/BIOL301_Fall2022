@@ -176,7 +176,17 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="08_stochastic_simulation.html">
-   Week 8: Stochastic simulations
+   Week 8: Stochastic simulations – Gillespie Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_master_equation.html">
+   Week 9: Numerically integrating a probability distribution – Master equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_master_equation_gene_exp.html">
+   Week 10: Master equations applied to gene expression
   </a>
  </li>
 </ul>
@@ -526,29 +536,6 @@ N &amp;= b \pm \sqrt{r/a}
 <img alt="_images/Midterm1_KEY_4_1.png" src="_images/Midterm1_KEY_4_1.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">b</span><span class="o">=</span><span class="mi">3</span>
-<span class="n">r</span><span class="o">=</span><span class="mi">16</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">N_dot</span> <span class="o">=</span> <span class="n">N</span><span class="o">*</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N_dot</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$\dot N$&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\dot N$&#39;)
-</pre></div>
-</div>
-<img alt="_images/Midterm1_KEY_5_1.png" src="_images/Midterm1_KEY_5_1.png" />
-</div>
-</div>
 <p><strong>(b) From your plot above, state the stability of each of the fixed points.</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(N = 0\)</span> is stable (slope through the fixed point is negative)</p></li>
@@ -625,51 +612,7 @@ N &amp;= b \pm \sqrt{r/a}
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;N&#39;)
 </pre></div>
 </div>
-<img alt="_images/Midterm1_KEY_12_1.png" src="_images/Midterm1_KEY_12_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_time</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">numsteps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_time</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="p">)</span>
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.9</span>
-
-<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">numsteps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">N_tilde</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">N_tilde</span><span class="p">))</span><span class="o">*</span><span class="n">dt</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
-
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">N_tilde</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">N_tilde</span><span class="p">))</span><span class="o">*</span><span class="n">dt</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.1</span>
-
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">N_tilde</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">N_tilde</span><span class="p">))</span><span class="o">*</span><span class="n">dt</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;N&#39;)
-</pre></div>
-</div>
-<img alt="_images/Midterm1_KEY_13_1.png" src="_images/Midterm1_KEY_13_1.png" />
+<img alt="_images/Midterm1_KEY_11_1.png" src="_images/Midterm1_KEY_11_1.png" />
 </div>
 </div>
 <p><strong>(b) From what you see in your plot, how does this match the stability of the fixed points that you determined in Part 2? Alternatively, if you didn’t complete Part 2, what seem to be the fixed points and their stabilities?</strong></p>
@@ -706,129 +649,6 @@ N &amp;= b \pm \sqrt{r/a}
 <p>Please save and export your file as HTML, and upload it to Canvas.</p>
 <p>If you would like me to consider any scratch work for partial credit, please turn in your paper to me.</p>
 <p><strong>If you run into any submission issues, please email me your .ipynb file instead.</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_time</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">numsteps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_time</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="p">)</span>
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.9</span>
-
-<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">numsteps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N_tilde</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
-    <span class="n">dN_tilde</span> <span class="o">=</span> <span class="n">N_tilde</span><span class="o">*</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">N_tilde</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">dN</span> <span class="o">+</span> <span class="n">dN_tilde</span><span class="p">)</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
-
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N_tilde</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
-    <span class="n">dN_tilde</span> <span class="o">=</span> <span class="n">N_tilde</span><span class="o">*</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">N_tilde</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">dN</span> <span class="o">+</span> <span class="n">dN_tilde</span><span class="p">)</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-
-<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.1</span>
-
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">dN</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N_tilde</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
-    <span class="n">dN_tilde</span> <span class="o">=</span> <span class="n">N_tilde</span><span class="o">*</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">N_tilde</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-    <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">dN</span> <span class="o">+</span> <span class="n">dN_tilde</span><span class="p">)</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;N&#39;)
-</pre></div>
-</div>
-<img alt="_images/Midterm1_KEY_22_1.png" src="_images/Midterm1_KEY_22_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters for our ODE</span>
-<span class="c1">#initial population set to 1</span>
-<span class="n">N_0</span> <span class="o">=</span> <span class="mf">0.9</span>
-<span class="c1"># min^-1</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
-
-<span class="c1"># parameters for our integration</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># min</span>
-<span class="n">total_time</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># min</span>
-
-<span class="c1"># determine the number of steps that will be taken</span>
-<span class="n">num_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_time</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="c1">#total time specified divided by dt</span>
-
-<span class="c1">#make array of the time values</span>
-<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#rate</span>
-    <span class="k">return</span> <span class="n">k</span><span class="o">*</span><span class="n">t</span>
-<span class="k">def</span> <span class="nf">Allee</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-   <span class="c1"># N = N</span>
-    
-    <span class="c1"># Compute dx/dt</span>
-    <span class="n">dN_dt</span> <span class="o">=</span>  <span class="n">N</span><span class="o">*</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">a</span> <span class="o">*</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-    <span class="c1"># Return the result as a NumPy array</span>
-    <span class="k">return</span> <span class="n">dN_dt</span>
-<span class="c1">#Improved Eulers</span>
-<span class="k">def</span> <span class="nf">Improved_Eul</span><span class="p">():</span>
-    
-    <span class="c1">#initialize an array of length num_steps to store values of N for Improved Eulers</span>
-    <span class="n">NI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-    
-    <span class="c1">#loop through and update it as we go through</span>
-    <span class="n">NI</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_0</span>
-    
-    <span class="c1">#numerically integrate through N</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-        
-        <span class="c1">#change in N</span>
-        <span class="n">dN</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">NI</span><span class="p">[</span><span class="n">t</span><span class="p">])</span><span class="o">*</span><span class="n">dt</span>
-        
-        <span class="c1">#guess at N</span>
-        <span class="n">N_tilde</span> <span class="o">=</span> <span class="n">NI</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dN</span>
-        
-        <span class="c1">#final value of N</span>
-        <span class="n">N_final</span> <span class="o">=</span> <span class="n">NI</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">NI</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">N_tilde</span><span class="p">))</span> <span class="o">*</span> <span class="n">dt</span>
-        
-        <span class="c1">#update array</span>
-        <span class="n">NI</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_final</span>
-    
-    <span class="k">return</span> <span class="n">NI</span>
-
-<span class="k">def</span> <span class="nf">Soln</span><span class="p">():</span>
-    
-    <span class="n">NS</span> <span class="o">=</span> <span class="n">N_0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">times</span><span class="p">)</span> <span class="c1">#k is r</span>
-    
-    <span class="k">return</span> <span class="n">NS</span>
-
-<span class="c1">#plt.plot(times,Allee(1,3,4),&#39;.&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="n">Improved_Eul</span><span class="p">(),</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Allee Model&quot;</span><span class="p">,</span><span class="s2">&quot;Improved Eulers&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb3b4c3e0d0&gt;
-</pre></div>
-</div>
-<img alt="_images/Midterm1_KEY_23_1.png" src="_images/Midterm1_KEY_23_1.png" />
-</div>
-</div>
 </section>
 
     <script type="text/x-thebe-config">

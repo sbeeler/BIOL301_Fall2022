@@ -184,6 +184,11 @@ const thebe_selector_output = ".output, .cell_output"
    Week 9: Numerically integrating a probability distribution – Master equations
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_master_equation_gene_exp.html">
+   Week 10: Master equations applied to gene expression
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -473,64 +478,6 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specifying the parameters</span>
-<span class="n">beta</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># per min</span>
-<span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># per min, per transcript</span>
-
-<span class="c1"># how long we want run simulation for</span>
-<span class="n">total_time</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># mins</span>
-
-<span class="c1"># initializing the number of mRNAs and the time</span>
-<span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="k">while</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">total_time</span><span class="p">:</span>
-    
-    <span class="c1"># specify the propensities for the possible state change</span>
-    <span class="n">production_prop</span> <span class="o">=</span> <span class="n">beta</span> 
-    <span class="n">degradation_prop</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">m</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    
-    <span class="c1"># add up all the propensities</span>
-    <span class="n">total_prop</span> <span class="o">=</span> <span class="n">production_prop</span> <span class="o">+</span> <span class="n">degradation_prop</span> 
-    
-    <span class="c1"># determine how much time elapses before &quot;something&quot; happens</span>
-    <span class="n">time_elapsed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">total_prop</span><span class="p">)</span>
-    
-    <span class="c1"># update time array </span>
-    <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">time_elapsed</span> <span class="p">)</span>
-    
-    <span class="c1"># randomly choose which event happens. weighted by their propensities</span>
-    <span class="n">event</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">([</span><span class="s2">&quot;production&quot;</span><span class="p">,</span> <span class="s2">&quot;degradation&quot;</span><span class="p">],</span> 
-                           <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="n">production_prop</span><span class="p">,</span> <span class="n">degradation_prop</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-    
-    <span class="c1"># update mRNA list based on which event happend</span>
-    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
-        <span class="n">m</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">m</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span>
-        
-    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;degradation&quot;</span><span class="p">:</span>
-        <span class="n">m</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">m</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>If everything went well, the plot below show tend towards 10 mRNAs, but with some fluctuations due to the randomness!</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;number of mRNAS&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;number of mRNAS&#39;)
-</pre></div>
-</div>
-<img alt="_images/HW6_solutions_3_1.png" src="_images/HW6_solutions_3_1.png" />
-</div>
-</div>
 <section id="problem-1">
 <h1>Problem 1<a class="headerlink" href="#problem-1" title="Permalink to this headline">#</a></h1>
 <p>Due to the random nature of a stochastic process, a single simulation may not be representative. To get a better sense of how this system will behave <em>on average</em>, use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to repeat our stochastic simulation 100 times. Plot each of these simulations on the same plot to see how much variability there can be from simulation to simulation. Remember you can use the <code class="docutils literal notranslate"><span class="pre">alpha</span></code> variable to make your plots more transparent and easier to visualize many on top of each other.</p>
@@ -586,15 +533,12 @@ title="Print to PDF"
     <span class="n">gillespie</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;number of mRNAS&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;number of mRNAS&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;number of mRNAS&#39;)
-</pre></div>
-</div>
-<img alt="_images/HW6_solutions_6_1.png" src="_images/HW6_solutions_6_1.png" />
+<img alt="_images/HW6_solutions_3_0.png" src="_images/HW6_solutions_3_0.png" />
 </div>
 </div>
 </section>
@@ -642,15 +586,12 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (mins)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;number of mRNAS&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f91cb7a0bd0&gt;]
-</pre></div>
-</div>
-<img alt="_images/HW6_solutions_10_1.png" src="_images/HW6_solutions_10_1.png" />
+<img alt="_images/HW6_solutions_7_0.png" src="_images/HW6_solutions_7_0.png" />
 </div>
 </div>
 <p>The numerical integration (red line) seems to well represent the average behavior of the stochastic simulations.</p>
@@ -749,7 +690,7 @@ p \rightarrow p-1, ;;;; &amp; \gamma_p p.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/HW6_solutions_14_0.png" src="_images/HW6_solutions_14_0.png" />
+<img alt="_images/HW6_solutions_11_0.png" src="_images/HW6_solutions_11_0.png" />
 </div>
 </div>
 </section>
