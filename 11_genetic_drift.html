@@ -508,6 +508,13 @@ title="Print to PDF"
 <span class="c1"># initilaize an array to store the frequency of the red allele</span>
 <span class="n">r_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_generations</span><span class="p">)</span>
 <span class="n">r_freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">r_freq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.5, 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. , 0. ,
+       0. , 0. , 0. , 0. , 0. , 0. , 0. ])
 </pre></div>
 </div>
 </div>
@@ -525,13 +532,33 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
 </pre></div>
 </div>
 </div>
 </div>
 <p>If you run that cell repeatedly, you’ll see that the average result will be that 16 alleles will be red, but this value can vary.</p>
 <p>Using this approach for generating the next generation’s red allele frequency, let’s simulate a single vial over time, updating the frequency at each generation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_generations</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">r_freq</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">num_red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n_flies</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> 
+    <span class="n">new_r_freq</span> <span class="o">=</span> <span class="n">num_red</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_flies</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">r_freq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_r_freq</span>
+
+<span class="n">r_freq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.5    , 0.40625, 0.25   , 0.03125, 0.03125, 0.03125, 0.03125,
+       0.0625 , 0.0625 , 0.03125, 0.09375, 0.0625 , 0.09375, 0.15625,
+       0.28125, 0.21875, 0.09375, 0.0625 , 0.0625 , 0.0625 ])
+</pre></div>
+</div>
+</div>
+</div>
 <p>Plotting the results. Does the red or white allele become fixed?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -553,7 +580,7 @@ title="Print to PDF"
 <section id="problem-1-simulating-the-full-buri-experiment">
 <h2>Problem 1 – Simulating the full Buri experiment<a class="headerlink" href="#problem-1-simulating-the-full-buri-experiment" title="Permalink to this headline">#</a></h2>
 <p>Extend what we’ve done so far to model the entire Buri experiment, tracking 107 vials over 20 generations. For this, we will want to use a 2D-array, such as <code class="docutils literal notranslate"><span class="pre">red_freq</span> <span class="pre">=</span> <span class="pre">np.zeros([n_vials,</span> <span class="pre">n_generations])</span></code> to store our allele frequencies in.</p>
-<p>Plot the distribution of the red allele frequency at the end of the 20 generations. It should look something like this:</p>
+<p>Plot the distribution of the red allele frequency at the end of the 20 generations as a histogram. It should look something like this:</p>
 <p><img alt="Screen Shot 2022-11-02 at 11.37.20 PM.png" src="attachment:6a35705e-e25f-4507-a124-2e7a9ae1620f.png" /></p>
 </section>
 <section id="problem-2-modifying-the-population-size">
