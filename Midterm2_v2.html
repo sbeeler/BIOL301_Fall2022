@@ -258,7 +258,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/Midterm2.ipynb"
+        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/Midterm2_v2.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -318,7 +318,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2FMidterm2.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2FMidterm2_v2.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -346,7 +346,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/Midterm2.ipynb"
+        <a href="_sources/Midterm2_v2.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -773,7 +773,7 @@ p \rightarrow p-1, ;;;; &amp; \gamma_p p.
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="problem-3-diffusion-with-flow-via-master-equation-7-pts">
 <h1>Problem 3 - Diffusion with flow via Master Equation (7 pts.)<a class="headerlink" href="#problem-3-diffusion-with-flow-via-master-equation-7-pts" title="Permalink to this headline">#</a></h1>
-<p>Let’s say we want to model diffusion in the presence of some flow. As a simplification, we can model this as a given particle is <strong>twice as likely to “jump” to the right as it is to “jump” to the left</strong> at each time point. There will still be randomness in how the particles move, but there is an overall preference to move to the right given the flow.</p>
+<p>Let’s say we want to model diffusion in the presence of some flow. As a simplification, we can model this as a given particle is <strong>twice as likely to “jump” to the left as it is to “jump” to the right</strong> at each time point. There will still be randomness in how the particles move, but there is an overall preference to move to the left given the flow.</p>
 <p>Let’s specify all the parameters and initialize all the probability to be in the center, as shown below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -806,7 +806,7 @@ p \rightarrow p-1, ;;;; &amp; \gamma_p p.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Midterm2_22_0.png" src="_images/Midterm2_22_0.png" />
+<img alt="_images/Midterm2_v2_22_0.png" src="_images/Midterm2_v2_22_0.png" />
 </div>
 </div>
 <section id="id5">
@@ -815,7 +815,7 @@ p \rightarrow p-1, ;;;; &amp; \gamma_p p.
 </section>
 <section id="id6">
 <h2>part b<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
-<p>Modify the code for the numerical integration to include the modification that particles should be twice as likely to jump to the right as to the left.</p>
+<p>Modify the code for the numerical integration to include the modification that particles should be twice as likely to jump to the left as to the right.</p>
 <p>There are a total of <strong>four</strong> terms that should be modified below. Make those changes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
