@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Week 12: Introduction to recursion &#8212; BIOL301 Fall 2022 materials</title>
+    <title>Homework 9 &#8212; BIOL301 Fall 2022 materials</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,7 +52,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Week 11: Genetic drift and simulating the Buri experiment" href="11_genetic_drift.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -112,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_configuring_computer.html">
    Week 1: Configuring your computer
@@ -193,8 +192,8 @@ const thebe_selector_output = ".output, .cell_output"
    Week 11: Genetic drift and simulating the Buri experiment
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_intro_recursion.html">
    Week 12: Introduction to recursion
   </a>
  </li>
@@ -257,7 +256,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/12_intro_recursion.ipynb"
+        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/HW9_prep.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -317,7 +316,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2F12_intro_recursion.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2FHW9_prep.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -345,7 +344,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/12_intro_recursion.ipynb"
+        <a href="_sources/HW9_prep.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -405,18 +404,30 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#computing-a-factorial">
-   Computing a factorial
+  <a class="reference internal nav-link" href="#problem-1-update-our-differences-function">
+   Problem 1 - Update our
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     differences
+    </span>
+   </code>
+   function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#counting-the-number-of-differences-between-two-sequences">
-   Counting the number of differences between two sequences
+  <a class="reference internal nav-link" href="#problem-2-write-a-recursive-reverse-function">
+   Problem 2 - Write a recursive
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     reverse
+    </span>
+   </code>
+   function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#use-it-or-lose-it-recursion">
-   Use-it or lose-it recursion
+  <a class="reference internal nav-link" href="#problem-3-longest-common-subsequence-lcs">
+   Problem 3 - Longest common subsequence (LCS)
   </a>
  </li>
 </ul>
@@ -428,7 +439,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 12: Introduction to recursion</h1>
+                <h1>Homework 9</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -439,18 +450,30 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#computing-a-factorial">
-   Computing a factorial
+  <a class="reference internal nav-link" href="#problem-1-update-our-differences-function">
+   Problem 1 - Update our
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     differences
+    </span>
+   </code>
+   function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#counting-the-number-of-differences-between-two-sequences">
-   Counting the number of differences between two sequences
+  <a class="reference internal nav-link" href="#problem-2-write-a-recursive-reverse-function">
+   Problem 2 - Write a recursive
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     reverse
+    </span>
+   </code>
+   function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#use-it-or-lose-it-recursion">
-   Use-it or lose-it recursion
+  <a class="reference internal nav-link" href="#problem-3-longest-common-subsequence-lcs">
+   Problem 3 - Longest common subsequence (LCS)
   </a>
  </li>
 </ul>
@@ -463,69 +486,19 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-12-introduction-to-recursion">
-<h1>Week 12: Introduction to recursion<a class="headerlink" href="#week-12-introduction-to-recursion" title="Permalink to this headline">#</a></h1>
-<hr><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="computing-a-factorial">
-<h2>Computing a factorial<a class="headerlink" href="#computing-a-factorial" title="Permalink to this headline">#</a></h2>
-<p>Our first recursive function was one to compute the factorial of a number:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    
-    <span class="c1"># base case</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># my last factorial birthday!</span>
-<span class="n">factorial</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="counting-the-number-of-differences-between-two-sequences">
-<h2>Counting the number of differences between two sequences<a class="headerlink" href="#counting-the-number-of-differences-between-two-sequences" title="Permalink to this headline">#</a></h2>
-<p>Our second recursive function counts up the number of differences between two sequences.</p>
-<p>Note, that (for now) we are assuming that the two sequences will be the same length, so our base case assumes that if <code class="docutils literal notranslate"><span class="pre">seq1</span></code> is the empty string, <code class="docutils literal notranslate"><span class="pre">seq2</span></code> will also be an empty string.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-9">
+<h1>Homework 9<a class="headerlink" href="#homework-9" title="Permalink to this headline">#</a></h1>
+<hr><section id="problem-1-update-our-differences-function">
+<h2>Problem 1 - Update our <code class="docutils literal notranslate"><span class="pre">differences</span></code> function<a class="headerlink" href="#problem-1-update-our-differences-function" title="Permalink to this headline">#</a></h2>
+<p>Update our differences function to no longer rely on the assumption that the two sequences will be the same length. That is, if we are comparing two sequences of different lengths, we will consider the excess basepairs of the longer sequence to all be differences. Concretely, that means a function call like <code class="docutils literal notranslate"><span class="pre">differences(&quot;AATT&quot;,&quot;ATTTCCGG&quot;)</span></code> should return <code class="docutils literal notranslate"><span class="pre">5</span></code> since the sequences have 1 difference in addition to the second sequences being 4 basepairs longer.</p>
+<p>As a hint, you will only need to change the base case to update the differences function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">differences</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">):</span>
     
     <span class="c1"># base case</span>
-    <span class="k">if</span> <span class="n">seq1</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">seq1</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">seq2</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq1</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">seq2</span><span class="p">))</span>
     
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">seq1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span>  <span class="n">seq2</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
@@ -533,58 +506,105 @@ title="Print to PDF"
         
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">differences</span><span class="p">(</span><span class="n">seq1</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">seq2</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-        
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below are some tests to make sure you wrote your function correctly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure this returns 5</span>
+<span class="n">differences</span><span class="p">(</span><span class="s2">&quot;AATT&quot;</span><span class="p">,</span><span class="s2">&quot;ATTTCCGG&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">differences</span><span class="p">(</span><span class="s2">&quot;ATCG&quot;</span><span class="p">,</span><span class="s2">&quot;ATCG&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this should also return 5</span>
+<span class="n">differences</span><span class="p">(</span><span class="s2">&quot;ATTTCCGG&quot;</span><span class="p">,</span><span class="s2">&quot;AATT&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">differences</span><span class="p">(</span><span class="s2">&quot;ATCG&quot;</span><span class="p">,</span><span class="s2">&quot;GCTA&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="use-it-or-lose-it-recursion">
-<h2>Use-it or lose-it recursion<a class="headerlink" href="#use-it-or-lose-it-recursion" title="Permalink to this headline">#</a></h2>
-<p>Below we apply the “use-it or lose-it” recursion approach for a <code class="docutils literal notranslate"><span class="pre">make_change</span></code> function.</p>
+<section id="problem-2-write-a-recursive-reverse-function">
+<h2>Problem 2 - Write a recursive <code class="docutils literal notranslate"><span class="pre">reverse</span></code> function<a class="headerlink" href="#problem-2-write-a-recursive-reverse-function" title="Permalink to this headline">#</a></h2>
+<p>To get more practice writing recursive functions, write a function that will reverse a sequence. Think about what the base case would be in this situation, i.e. what is the simplest possible sequence we can reverse? One you have your base case, consider how you will make your incrementally smaller problem for your recursive function call.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    
+    <span class="c1"># basecase</span>
+    <span class="k">if</span> <span class="n">seq</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">seq</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="n">seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, I’ve included a test for you to run below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># should return &#39;GCTA&#39;</span>
+<span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;ATCG&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;GCTA&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-3-longest-common-subsequence-lcs">
+<h2>Problem 3 - Longest common subsequence (LCS)<a class="headerlink" href="#problem-3-longest-common-subsequence-lcs" title="Permalink to this headline">#</a></h2>
+<p>Write a function that compute the length of the longest common subsequence (LCS) of two sequences. This will involve using the “use-it” or “lose-it” recursion approach.</p>
+<p>The overall structure will look something like this:</p>
+<ul class="simple">
+<li><p>First, we need a base case for when either sequence is the empty string. This is the simplest possible version of our problem which will prompt our function to return some value.</p></li>
+<li><p>Our “use-it” case will occur when the first letter of our two sequences match. In this case, we will return 1 plus our recursive call, where the 1 will count this match towards our longest common subsequence score.</p></li>
+<li><p>Lastly, our “lose-it” cases will not contribute to our tally for the longest common subsequence, but rather test one of two scenarios: computing the LCS for sequence 1 and all but the first character of sequence 2, or computing the LCS of sequence 2 and all but the first character of sequence 1. Of these two options, we want to return whichever returns the largest number.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LCS</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">):</span>
+    
+    
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run your code on the following two sequences: <code class="docutils literal notranslate"><span class="pre">CATTCAC</span></code> and <code class="docutils literal notranslate"><span class="pre">CTCGCAGC</span></code>. What number should your function return? What sequence of baseparis does this longest common subsequence correspond to?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_change</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">denominations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;returns the fewest number of coins needed to reach the target value </span>
 <span class="sd">    given the provided the denominations of coins&quot;&quot;&quot;</span>
     
-    <span class="c1"># base case for 0 target</span>
     <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
     
-    <span class="c1"># base case for no denominations left</span>
     <span class="k">elif</span> <span class="n">denominations</span> <span class="o">==</span> <span class="p">[]:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
     
-    <span class="c1"># make sure we don&#39;t go to a negative target</span>
     <span class="k">elif</span> <span class="n">denominations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">make_change</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">denominations</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
     
-    <span class="c1"># compare use_it vs. lose_it scenarios</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">use_it</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">make_change</span><span class="p">(</span><span class="n">target</span><span class="o">-</span><span class="n">denominations</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">denominations</span><span class="p">)</span>
         <span class="n">lose_it</span> <span class="o">=</span> <span class="n">make_change</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">denominations</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
@@ -601,6 +621,18 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_change</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 </div>
@@ -635,13 +667,6 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="11_genetic_drift.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Week 11: Genetic drift and simulating the Buri experiment</p>
-        </div>
-    </a>
 </div>
             </footer>
         </div>
