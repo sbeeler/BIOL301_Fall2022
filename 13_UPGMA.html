@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Step 1: Make a dictionary of differences &#8212; BIOL301 Fall 2022 materials</title>
+    <title>Week 13: Implementing the UPGMA algorithm &#8212; BIOL301 Fall 2022 materials</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Week 12: Introduction to recursion" href="12_intro_recursion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -111,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_configuring_computer.html">
    Week 1: Configuring your computer
@@ -197,8 +198,8 @@ const thebe_selector_output = ".output, .cell_output"
    Week 12: Introduction to recursion
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13_UPGMA.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Week 13: Implementing the UPGMA algorithm
   </a>
  </li>
@@ -261,7 +262,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/Untitled.ipynb"
+        <a href="https://mybinder.org/v2/gh/sbeeler/BIOL301_Fall2022/master?urlpath=tree/docs/13_UPGMA.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -321,7 +322,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2FUntitled.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sbeeler/BIOL301_Fall2022/tree/gh-pages/issues/new?title=Issue%20on%20page%20%2F13_UPGMA.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -349,7 +350,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/Untitled.ipynb"
+        <a href="_sources/13_UPGMA.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -408,19 +409,67 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-make-a-dictionary-of-differences">
    Step 1: Make a dictionary of differences
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#step-2-write-a-function-that-finds-the-two-closest-related-organisms-i-e-a-pair-group">
    Step 2: Write a function that finds the two closest related organisms (i.e. a pair group)
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#step-3-with-a-pair-group-in-hand-let-s-update-our-differences-dictionary-and-nodes">
    Step 3: With a pair-group in hand, let’s update our differences dictionary and nodes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-remove-members-of-the-pair-group-from-the-list-of-nodes">
+     3a: Remove members of the pair group from the list of nodes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-update-the-distances-in-the-dictionary-relative-to-this-new-node">
+     3b: Update the distances in the dictionary relative to this new node
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-remove-the-original-members-of-the-newly-created-pair-group-from-the-dictionary">
+     3c: Remove the original members of the newly created pair group from the dictionary
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-add-pair-group-to-the-nodes-list">
+     3d: Add pair group to the nodes list
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-writing-an-update-diff-dict-function">
+   Part 4: Writing an
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     update_diff_dict
+    </span>
+   </code>
+   function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-5-iterating-to-make-a-tree">
+   Part 5: Iterating to make a tree!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-6-intepreting-the-results">
+   Part 6: intepreting the results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extra-credit-taking-an-weighted-average">
+   Extra credit: Taking an weighted average
   </a>
  </li>
 </ul>
@@ -432,7 +481,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Step 1: Make a dictionary of differences</h1>
+                <h1>Week 13: Implementing the UPGMA algorithm</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -442,19 +491,67 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-make-a-dictionary-of-differences">
    Step 1: Make a dictionary of differences
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#step-2-write-a-function-that-finds-the-two-closest-related-organisms-i-e-a-pair-group">
    Step 2: Write a function that finds the two closest related organisms (i.e. a pair group)
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#step-3-with-a-pair-group-in-hand-let-s-update-our-differences-dictionary-and-nodes">
    Step 3: With a pair-group in hand, let’s update our differences dictionary and nodes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-remove-members-of-the-pair-group-from-the-list-of-nodes">
+     3a: Remove members of the pair group from the list of nodes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-update-the-distances-in-the-dictionary-relative-to-this-new-node">
+     3b: Update the distances in the dictionary relative to this new node
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-remove-the-original-members-of-the-newly-created-pair-group-from-the-dictionary">
+     3c: Remove the original members of the newly created pair group from the dictionary
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-add-pair-group-to-the-nodes-list">
+     3d: Add pair group to the nodes list
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-writing-an-update-diff-dict-function">
+   Part 4: Writing an
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     update_diff_dict
+    </span>
+   </code>
+   function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-5-iterating-to-make-a-tree">
+   Part 5: Iterating to make a tree!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-6-intepreting-the-results">
+   Part 6: intepreting the results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extra-credit-taking-an-weighted-average">
+   Extra credit: Taking an weighted average
   </a>
  </li>
 </ul>
@@ -467,40 +564,16 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="week-13-implementing-the-upgma-algorithm">
+<h1>Week 13: Implementing the UPGMA algorithm<a class="headerlink" href="#week-13-implementing-the-upgma-algorithm" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Some functions that we might want to use:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LCS</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">):</span>
-    
-    <span class="c1"># base case 1</span>
-    <span class="k">if</span> <span class="n">seq1</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    
-    <span class="c1"># base case 2</span>
-    <span class="k">elif</span> <span class="n">seq2</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    
-    <span class="c1"># make a match while we can</span>
-    <span class="k">elif</span> <span class="n">seq1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">seq2</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">LCS</span><span class="p">(</span><span class="n">seq1</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">seq2</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-    
-    <span class="c1"># recurse on the two possible sub-problems</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">lose1</span> <span class="o">=</span> <span class="n">LCS</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-        <span class="n">lose2</span> <span class="o">=</span> <span class="n">LCS</span><span class="p">(</span><span class="n">seq1</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">seq2</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">lose1</span><span class="p">,</span> <span class="n">lose2</span><span class="p">)</span>   
-</pre></div>
-</div>
-</div>
-</div>
+<p>Our differences function we will use to see how related two organisms are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">differences</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">):</span>
@@ -540,16 +613,17 @@ title="Print to PDF"
 </div>
 </div>
 <section id="step-1-make-a-dictionary-of-differences">
-<h1>Step 1: Make a dictionary of differences<a class="headerlink" href="#step-1-make-a-dictionary-of-differences" title="Permalink to this headline">#</a></h1>
+<h2>Step 1: Make a dictionary of differences<a class="headerlink" href="#step-1-make-a-dictionary-of-differences" title="Permalink to this headline">#</a></h2>
+<p>Note that I’ve modified this code to include each combination only once. That is,<code class="docutils literal notranslate"><span class="pre">('human',</span> <span class="pre">'gorilla')</span></code> appears in the dictionary, but <code class="docutils literal notranslate"><span class="pre">('gorilla',</span> <span class="pre">'human')</span></code> does not.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">animals</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">animals</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
-            <span class="n">diff</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-            <span class="n">diff_dict</span><span class="p">[(</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">nodes</span><span class="p">[</span><span class="n">j</span><span class="p">])]</span> <span class="o">=</span> <span class="n">diff</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">animals</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">animals</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span> 
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">animals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">animals</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">diff_dict</span><span class="p">[(</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nodes</span><span class="p">[</span><span class="n">j</span><span class="p">])]</span> <span class="o">=</span> <span class="n">diff</span>
         
 <span class="n">diff_dict</span>
 </pre></div>
@@ -562,57 +636,36 @@ title="Print to PDF"
  (&#39;carp&#39;, &#39;human&#39;): 72,
  (&#39;carp&#39;, &#39;gorilla&#39;): 72,
  (&#39;carp&#39;, &#39;rabbit&#39;): 76,
- (&#39;cow&#39;, &#39;carp&#39;): 70,
  (&#39;cow&#39;, &#39;donkey&#39;): 19,
  (&#39;cow&#39;, &#39;horse&#39;): 17,
  (&#39;cow&#39;, &#39;human&#39;): 17,
  (&#39;cow&#39;, &#39;gorilla&#39;): 19,
  (&#39;cow&#39;, &#39;rabbit&#39;): 26,
- (&#39;donkey&#39;, &#39;carp&#39;): 71,
- (&#39;donkey&#39;, &#39;cow&#39;): 19,
  (&#39;donkey&#39;, &#39;horse&#39;): 3,
  (&#39;donkey&#39;, &#39;human&#39;): 20,
  (&#39;donkey&#39;, &#39;gorilla&#39;): 22,
  (&#39;donkey&#39;, &#39;rabbit&#39;): 26,
- (&#39;horse&#39;, &#39;carp&#39;): 71,
- (&#39;horse&#39;, &#39;cow&#39;): 17,
- (&#39;horse&#39;, &#39;donkey&#39;): 3,
  (&#39;horse&#39;, &#39;human&#39;): 17,
  (&#39;horse&#39;, &#39;gorilla&#39;): 19,
  (&#39;horse&#39;, &#39;rabbit&#39;): 24,
- (&#39;human&#39;, &#39;carp&#39;): 72,
- (&#39;human&#39;, &#39;cow&#39;): 17,
- (&#39;human&#39;, &#39;donkey&#39;): 20,
- (&#39;human&#39;, &#39;horse&#39;): 17,
  (&#39;human&#39;, &#39;gorilla&#39;): 2,
  (&#39;human&#39;, &#39;rabbit&#39;): 26,
- (&#39;gorilla&#39;, &#39;carp&#39;): 72,
- (&#39;gorilla&#39;, &#39;cow&#39;): 19,
- (&#39;gorilla&#39;, &#39;donkey&#39;): 22,
- (&#39;gorilla&#39;, &#39;horse&#39;): 19,
- (&#39;gorilla&#39;, &#39;human&#39;): 2,
- (&#39;gorilla&#39;, &#39;rabbit&#39;): 26,
- (&#39;rabbit&#39;, &#39;carp&#39;): 76,
- (&#39;rabbit&#39;, &#39;cow&#39;): 26,
- (&#39;rabbit&#39;, &#39;donkey&#39;): 26,
- (&#39;rabbit&#39;, &#39;horse&#39;): 24,
- (&#39;rabbit&#39;, &#39;human&#39;): 26,
- (&#39;rabbit&#39;, &#39;gorilla&#39;): 26}
+ (&#39;gorilla&#39;, &#39;rabbit&#39;): 26}
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="step-2-write-a-function-that-finds-the-two-closest-related-organisms-i-e-a-pair-group">
-<h1>Step 2: Write a function that finds the two closest related organisms (i.e. a pair group)<a class="headerlink" href="#step-2-write-a-function-that-finds-the-two-closest-related-organisms-i-e-a-pair-group" title="Permalink to this headline">#</a></h1>
-<p>Your function should return the indices of the two most closely related organisms (i.e. 3 and 5). Make sure that it returns two unique values!</p>
+<h2>Step 2: Write a function that finds the two closest related organisms (i.e. a pair group)<a class="headerlink" href="#step-2-write-a-function-that-finds-the-two-closest-related-organisms-i-e-a-pair-group" title="Permalink to this headline">#</a></h2>
+<p>Your function should return a tuple with the most closely related organisms from the dictionary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pair_group</span><span class="p">(</span><span class="n">diff_dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; given a matrix of differences, returns the indices of the closest two related organisms&quot;&quot;&quot;</span>
 
     <span class="n">min_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
-
+    
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">diff_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">diff_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min_diff</span><span class="p">:</span>
             <span class="n">min_diff</span> <span class="o">=</span> <span class="n">diff_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
@@ -623,6 +676,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>If this function works correctly, it should return the pair group <code class="docutils literal notranslate"><span class="pre">('human',</span> <span class="pre">'gorilla')</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span> <span class="o">=</span> <span class="n">pair_group</span><span class="p">(</span><span class="n">diff_dict</span><span class="p">)</span>
@@ -636,209 +690,152 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
+<section id="step-3-with-a-pair-group-in-hand-let-s-update-our-differences-dictionary-and-nodes">
+<h2>Step 3: With a pair-group in hand, let’s update our differences dictionary and nodes<a class="headerlink" href="#step-3-with-a-pair-group-in-hand-let-s-update-our-differences-dictionary-and-nodes" title="Permalink to this headline">#</a></h2>
+<p>Below, we will work through each step needed to update our dictionary and list of nodes accounting for the fact that we are now making the human/gorilla pair a node.</p>
+<section id="a-remove-members-of-the-pair-group-from-the-list-of-nodes">
+<h3>3a: Remove members of the pair group from the list of nodes<a class="headerlink" href="#a-remove-members-of-the-pair-group-from-the-list-of-nodes" title="Permalink to this headline">#</a></h3>
+<p>We no longer want to consider the nodes <code class="docutils literal notranslate"><span class="pre">human</span></code> or <code class="docutils literal notranslate"><span class="pre">gorilla</span></code> since we have now determined that these two nodes are most closely related. So we will remove these nodes from the node list, leaving just <code class="docutils literal notranslate"><span class="pre">['carp',</span> <span class="pre">'cow',</span> <span class="pre">'donkey',</span> <span class="pre">'horse',</span> <span class="pre">'rabbit']</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove the pair group from the dictionary</span>
-<span class="n">pg1</span> <span class="o">=</span> <span class="n">pg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">pg2</span> <span class="o">=</span> <span class="n">pg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">diff_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">((</span><span class="n">pg1</span><span class="p">,</span> <span class="n">pg2</span><span class="p">))</span>
-<span class="n">diff_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">((</span><span class="n">pg2</span><span class="p">,</span> <span class="n">pg1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove the nodes of the pair group from the nodes list</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pg</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pg</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="c1"># remove the nodes of the pair group from the nodes list</span>
-<span class="n">nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pg1</span><span class="p">)</span>
-<span class="n">nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pg2</span><span class="p">)</span>
-
-<span class="c1"># for the remaining node in the nodes list, update their distance to be weighted average of the two other nodes in the pair group</span>
-<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
-    <span class="n">diff1</span> <span class="o">=</span> <span class="n">diff_dict</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span> <span class="n">pg1</span><span class="p">)]</span> 
-    <span class="n">diff2</span> <span class="o">=</span> <span class="n">diff_dict</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span> <span class="n">pg2</span><span class="p">)]</span> 
-    <span class="n">new_diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">diff1</span> <span class="o">+</span> <span class="n">diff2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="n">diff_dict</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span><span class="n">pg</span><span class="p">)]</span> <span class="o">=</span> <span class="n">new_diff</span>
-                
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_dict</span>
+<span class="c1"># check out list of nodes</span>
+<span class="n">nodes</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;carp&#39;, &#39;cow&#39;): 70,
- (&#39;carp&#39;, &#39;donkey&#39;): 71,
- (&#39;carp&#39;, &#39;horse&#39;): 71,
- (&#39;carp&#39;, &#39;human&#39;): 72,
- (&#39;carp&#39;, &#39;gorilla&#39;): 72,
- (&#39;carp&#39;, &#39;rabbit&#39;): 76,
- (&#39;cow&#39;, &#39;carp&#39;): 70,
- (&#39;cow&#39;, &#39;donkey&#39;): 19,
- (&#39;cow&#39;, &#39;horse&#39;): 17,
- (&#39;cow&#39;, &#39;human&#39;): 17,
- (&#39;cow&#39;, &#39;gorilla&#39;): 19,
- (&#39;cow&#39;, &#39;rabbit&#39;): 26,
- (&#39;donkey&#39;, &#39;carp&#39;): 71,
- (&#39;donkey&#39;, &#39;cow&#39;): 19,
- (&#39;donkey&#39;, &#39;horse&#39;): 3,
- (&#39;donkey&#39;, &#39;human&#39;): 20,
- (&#39;donkey&#39;, &#39;gorilla&#39;): 22,
- (&#39;donkey&#39;, &#39;rabbit&#39;): 26,
- (&#39;horse&#39;, &#39;carp&#39;): 71,
- (&#39;horse&#39;, &#39;cow&#39;): 17,
- (&#39;horse&#39;, &#39;donkey&#39;): 3,
- (&#39;horse&#39;, &#39;human&#39;): 17,
- (&#39;horse&#39;, &#39;gorilla&#39;): 19,
- (&#39;horse&#39;, &#39;rabbit&#39;): 24,
- (&#39;human&#39;, &#39;carp&#39;): 72,
- (&#39;human&#39;, &#39;cow&#39;): 17,
- (&#39;human&#39;, &#39;donkey&#39;): 20,
- (&#39;human&#39;, &#39;horse&#39;): 17,
- (&#39;human&#39;, &#39;rabbit&#39;): 26,
- (&#39;gorilla&#39;, &#39;carp&#39;): 72,
- (&#39;gorilla&#39;, &#39;cow&#39;): 19,
- (&#39;gorilla&#39;, &#39;donkey&#39;): 22,
- (&#39;gorilla&#39;, &#39;horse&#39;): 19,
- (&#39;gorilla&#39;, &#39;rabbit&#39;): 26,
- (&#39;rabbit&#39;, &#39;carp&#39;): 76,
- (&#39;rabbit&#39;, &#39;cow&#39;): 26,
- (&#39;rabbit&#39;, &#39;donkey&#39;): 26,
- (&#39;rabbit&#39;, &#39;horse&#39;): 24,
- (&#39;rabbit&#39;, &#39;human&#39;): 26,
- (&#39;rabbit&#39;, &#39;gorilla&#39;): 26,
- (&#39;carp&#39;, (&#39;human&#39;, &#39;gorilla&#39;)): 72.0,
- (&#39;cow&#39;, (&#39;human&#39;, &#39;gorilla&#39;)): 18.0,
- (&#39;donkey&#39;, (&#39;human&#39;, &#39;gorilla&#39;)): 21.0,
- (&#39;horse&#39;, (&#39;human&#39;, &#39;gorilla&#39;)): 18.0,
- (&#39;rabbit&#39;, (&#39;human&#39;, &#39;gorilla&#39;)): 26.0}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;carp&#39;, &#39;cow&#39;, &#39;donkey&#39;, &#39;horse&#39;, &#39;rabbit&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="step-3-with-a-pair-group-in-hand-let-s-update-our-differences-dictionary-and-nodes">
-<h1>Step 3: With a pair-group in hand, let’s update our differences dictionary and nodes<a class="headerlink" href="#step-3-with-a-pair-group-in-hand-let-s-update-our-differences-dictionary-and-nodes" title="Permalink to this headline">#</a></h1>
+<section id="b-update-the-distances-in-the-dictionary-relative-to-this-new-node">
+<h3>3b: Update the distances in the dictionary relative to this new node<a class="headerlink" href="#b-update-the-distances-in-the-dictionary-relative-to-this-new-node" title="Permalink to this headline">#</a></h3>
+<p>For each of the remaining organisms (carp, cow, donkey, horse, rabbit), we want to find their distance to this new <code class="docutils literal notranslate"><span class="pre">('human',</span> <span class="pre">'gorilla')</span></code> node and add this to the dictionary. This will amount to averaging the existing distance to the human and the distance to gorilla for the given organism. <em>Note that a more careful treatment will use the <strong>weighted</strong> average based on the size of the two nodes, but for now we will just take the average directly.</em></p>
+<p>A wrinkle here is that you might not know if the relevant entry in the dictionary is <code class="docutils literal notranslate"><span class="pre">('gorilla',</span> <span class="pre">'rabbit')</span></code> or <code class="docutils literal notranslate"><span class="pre">('rabbit',</span> <span class="pre">'gorilla')</span></code> for example. So you’ll want to search for both keys to find the distance between rabbit and gorilla. You can ask the boolean question <code class="docutils literal notranslate"><span class="pre">('gorilla',</span> <span class="pre">'rabbit')</span> <span class="pre">in</span> <span class="pre">diff_dict</span></code> to see if a certain key exists in the dictionary.</p>
+<p>If you’ve done this part correctly, you should see the following entries at the bottom of your dictionary now:</p>
+<p><code class="docutils literal notranslate"><span class="pre">('carp',</span> <span class="pre">('human',</span> <span class="pre">'gorilla')):</span> <span class="pre">72.0,</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">('cow',</span> <span class="pre">('human',</span> <span class="pre">'gorilla')):</span> <span class="pre">18.0,</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">('donkey',</span> <span class="pre">('human',</span> <span class="pre">'gorilla')):</span> <span class="pre">21.0,</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">('horse',</span> <span class="pre">('human',</span> <span class="pre">'gorilla')):</span> <span class="pre">18.0,</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">('rabbit',</span> <span class="pre">('human',</span> <span class="pre">'gorilla')):</span> <span class="pre">26.0</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_dict</span><span class="p">(</span><span class="n">diff_dict</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">pg</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
     
-    <span class="c1"># remove the pair group from the dictionary</span>
-    <span class="n">pg1</span> <span class="o">=</span> <span class="n">pg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">pg2</span> <span class="o">=</span> <span class="n">pg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">diff_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">((</span><span class="n">pg1</span><span class="p">,</span> <span class="n">pg2</span><span class="p">))</span>
-    <span class="n">diff_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">((</span><span class="n">pg2</span><span class="p">,</span> <span class="n">pg1</span><span class="p">))</span>
+    <span class="c1"># find distance between the node and first member of pair group</span>
+     
+    <span class="c1"># find distance between the node and second member of pair group</span>
+        
+    <span class="c1"># add average distance to the newly created node</span>
     
-    <span class="c1"># remove the nodes of the pair group from the nodes list</span>
-    <span class="n">nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pg1</span><span class="p">)</span>
-    <span class="n">nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pg2</span><span class="p">)</span>
-    
-    <span class="c1"># for the remaining node in the nodes list, update their distance to be weighted average of the two other nodes in the pair group</span>
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
-        <span class="n">diff1</span> <span class="o">=</span> <span class="n">diff_dict</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span> <span class="n">pg1</span><span class="p">)]</span> 
-        <span class="n">diff2</span> <span class="o">=</span> <span class="n">diff_dict</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span> <span class="n">pg2</span><span class="p">)]</span> 
-        <span class="n">new_diff</span> <span class="o">=</span> <span class="n">diff1</span> <span class="o">/</span> <span class="n">diff2</span>
-        <span class="n">diff_dict</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span><span class="n">pg</span><span class="p">)]</span> <span class="o">=</span> <span class="n">new_diff</span>
-                
-    
-    <span class="c1"># add our new pair group node to the list</span>
-    
-    
-    
-    
-    
+<span class="c1"># check out updated dictionary</span>
+<span class="n">diff_dict</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="c-remove-the-original-members-of-the-newly-created-pair-group-from-the-dictionary">
+<h3>3c: Remove the original members of the newly created pair group from the dictionary<a class="headerlink" href="#c-remove-the-original-members-of-the-newly-created-pair-group-from-the-dictionary" title="Permalink to this headline">#</a></h3>
+<p>Now that we’ve calculated the new distances, we want to remove all references to just <code class="docutils literal notranslate"><span class="pre">human</span></code> (i.e. <code class="docutils literal notranslate"><span class="pre">pg[0]</span></code>) and just <code class="docutils literal notranslate"><span class="pre">gorilla</span></code> (i.e. <code class="docutils literal notranslate"><span class="pre">pg[1]</span></code>) from the dictionary. That is, now that we’ve created a new pair group, we no longer want any references human or gorilla, as we are moving forward with the human/gorilla unit as a node..</p>
+<p>Again another wrinkle here is that you can’t edit the dictionary as you are looping through it, so I recommend making a list of <code class="docutils literal notranslate"><span class="pre">keys_to_remove</span></code> as you loop through the dictionary. Once you have this list established, you can then remove these keys in turn.</p>
+<p>To make sure you’ve written your code correctly, look at your <code class="docutils literal notranslate"><span class="pre">diff_dict</span></code> and make sure that there are no entries remaining that contain <code class="docutils literal notranslate"><span class="pre">'human'</span></code> or <code class="docutils literal notranslate"><span class="pre">'gorilla'</span></code> as nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([(&#39;carp&#39;, &#39;chimp&#39;), (&#39;carp&#39;, &#39;cow&#39;), (&#39;carp&#39;, &#39;donkey&#39;), (&#39;carp&#39;, &#39;horse&#39;), (&#39;carp&#39;, &#39;human&#39;), (&#39;carp&#39;, &#39;gorilla&#39;), (&#39;carp&#39;, &#39;rabbit&#39;), (&#39;chimp&#39;, &#39;carp&#39;), (&#39;chimp&#39;, &#39;cow&#39;), (&#39;chimp&#39;, &#39;donkey&#39;), (&#39;chimp&#39;, &#39;horse&#39;), (&#39;chimp&#39;, &#39;human&#39;), (&#39;chimp&#39;, &#39;gorilla&#39;), (&#39;chimp&#39;, &#39;rabbit&#39;), (&#39;cow&#39;, &#39;carp&#39;), (&#39;cow&#39;, &#39;chimp&#39;), (&#39;cow&#39;, &#39;donkey&#39;), (&#39;cow&#39;, &#39;horse&#39;), (&#39;cow&#39;, &#39;human&#39;), (&#39;cow&#39;, &#39;gorilla&#39;), (&#39;cow&#39;, &#39;rabbit&#39;), (&#39;donkey&#39;, &#39;carp&#39;), (&#39;donkey&#39;, &#39;chimp&#39;), (&#39;donkey&#39;, &#39;cow&#39;), (&#39;donkey&#39;, &#39;horse&#39;), (&#39;donkey&#39;, &#39;human&#39;), (&#39;donkey&#39;, &#39;gorilla&#39;), (&#39;donkey&#39;, &#39;rabbit&#39;), (&#39;horse&#39;, &#39;carp&#39;), (&#39;horse&#39;, &#39;chimp&#39;), (&#39;horse&#39;, &#39;cow&#39;), (&#39;horse&#39;, &#39;donkey&#39;), (&#39;horse&#39;, &#39;human&#39;), (&#39;horse&#39;, &#39;gorilla&#39;), (&#39;horse&#39;, &#39;rabbit&#39;), (&#39;human&#39;, &#39;carp&#39;), (&#39;human&#39;, &#39;chimp&#39;), (&#39;human&#39;, &#39;cow&#39;), (&#39;human&#39;, &#39;donkey&#39;), (&#39;human&#39;, &#39;horse&#39;), (&#39;human&#39;, &#39;gorilla&#39;), (&#39;human&#39;, &#39;rabbit&#39;), (&#39;gorilla&#39;, &#39;carp&#39;), (&#39;gorilla&#39;, &#39;chimp&#39;), (&#39;gorilla&#39;, &#39;cow&#39;), (&#39;gorilla&#39;, &#39;donkey&#39;), (&#39;gorilla&#39;, &#39;horse&#39;), (&#39;gorilla&#39;, &#39;human&#39;), (&#39;gorilla&#39;, &#39;rabbit&#39;), (&#39;rabbit&#39;, &#39;carp&#39;), (&#39;rabbit&#39;, &#39;chimp&#39;), (&#39;rabbit&#39;, &#39;cow&#39;), (&#39;rabbit&#39;, &#39;donkey&#39;), (&#39;rabbit&#39;, &#39;horse&#39;), (&#39;rabbit&#39;, &#39;human&#39;), (&#39;rabbit&#39;, &#39;gorilla&#39;)])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pg</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">((</span><span class="s1">&#39;chimp&#39;</span><span class="p">,</span> <span class="s1">&#39;human&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">node</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">7</span><span class="n">y</span><span class="o">/</span><span class="mi">26</span><span class="n">f264rd4ldbcc1h172r7jkh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_44154</span><span class="o">/</span><span class="mf">1712132917.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">node</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keys_to_remove</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="ne">NameError</span>: name &#39;node&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">7</span><span class="n">y</span><span class="o">/</span><span class="mi">26</span><span class="n">f264rd4ldbcc1h172r7jkh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_44154</span><span class="o">/</span><span class="mf">136699980.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span>
+<span class="c1"># find keys to remove</span>
+        
+<span class="c1"># remove keys</span>
 
-<span class="ne">AttributeError</span>: &#39;tuple&#39; object has no attribute &#39;flatten&#39;
+<span class="c1"># checkout updated dictioanry</span>
+<span class="n">diff_dict</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="d-add-pair-group-to-the-nodes-list">
+<h3>3d: Add pair group to the nodes list<a class="headerlink" href="#d-add-pair-group-to-the-nodes-list" title="Permalink to this headline">#</a></h3>
+<p>Lastly, we want to add the new pair group, <code class="docutils literal notranslate"><span class="pre">('human',</span> <span class="pre">'gorilla')</span></code>, to our list of nodes, so that we can proceed with treating the human/gorilla node as a unit. This is just a single line that I’ve written for you below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;b&#39;</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add new pair group to the nodes</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pg</span><span class="p">)</span>
+
+<span class="c1"># check out updated nodes list</span>
+<span class="n">nodes</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</div>
+</section>
+</section>
+<section id="part-4-writing-an-update-diff-dict-function">
+<h2>Part 4: Writing an <code class="docutils literal notranslate"><span class="pre">update_diff_dict</span></code> function<a class="headerlink" href="#part-4-writing-an-update-diff-dict-function" title="Permalink to this headline">#</a></h2>
+<p>Above, we’ve worked through one full round of finding a new pair group and updating the nodes and dictionary. Let’s put this all in a function so that we can repeatedly do this process to build up our phylogenetic tree, layer by layer. The function will take in a <code class="docutils literal notranslate"><span class="pre">diff_dict</span></code>, a list of <code class="docutils literal notranslate"><span class="pre">nodes</span></code>, and the pair group (<code class="docutils literal notranslate"><span class="pre">pg</span></code>) to incorporate. It will return an updated version of the <code class="docutils literal notranslate"><span class="pre">diff_dict</span></code> and <code class="docutils literal notranslate"><span class="pre">nodes</span></code> as a result of incorporating the pair group.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_diff_dict</span><span class="p">(</span><span class="n">diff_dict</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">pg</span><span class="p">):</span>
+    
+    <span class="c1"># return updated version </span>
+    <span class="k">return</span> <span class="n">diff_dict</span><span class="p">,</span> <span class="n">nodes</span> 
 </pre></div>
 </div>
 </div>
 </div>
+<p>To check that this works, I reinstantiate the original nodes list and dictionary below, and run this function to incorporate the <code class="docutils literal notranslate"><span class="pre">('human',</span> <span class="pre">'gorilla')</span></code> node. Look at the outputs of the <code class="docutils literal notranslate"><span class="pre">update_diff_dict</span></code> function: have the dictionary and list of nodes been update correctly?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;carp&quot;</span><span class="p">,</span> <span class="s2">&quot;cow&quot;</span><span class="p">,</span> <span class="s2">&quot;donkey&quot;</span><span class="p">,</span> <span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;gorilla&quot;</span><span class="p">,</span> <span class="s2">&quot;rabbit&quot;</span><span class="p">]</span>
+
+<span class="c1"># remake the original dictioary</span>
+<span class="n">diff_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">animals</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">animals</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span> 
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">animals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">animals</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">diff_dict</span><span class="p">[(</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nodes</span><span class="p">[</span><span class="n">j</span><span class="p">])]</span> <span class="o">=</span> <span class="n">diff</span>
+            
+<span class="c1"># testing the update function</span>
+<span class="n">update_diff_dict</span><span class="p">(</span><span class="n">diff_dict</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;human&#39;</span><span class="p">,</span> <span class="s1">&#39;gorilla&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-5-iterating-to-make-a-tree">
+<h2>Part 5: Iterating to make a tree!<a class="headerlink" href="#part-5-iterating-to-make-a-tree" title="Permalink to this headline">#</a></h2>
+<p>We’ll use the following approach to repeatedly build up our tree:</p>
+<ul class="simple">
+<li><p>Use our <code class="docutils literal notranslate"><span class="pre">pair_group</span></code> function to find the two most closely related nodes</p></li>
+<li><p>With the pair group in hand, use our <code class="docutils literal notranslate"><span class="pre">update_diff_dict</span></code> function to get updated versions of our dictionary and our list of nodes</p></li>
+<li><p>Repeat until the <code class="docutils literal notranslate"><span class="pre">nodes</span></code> list has a length of 1, meaning that all organisms have been added to the tree</p></li>
+</ul>
+</section>
+<section id="part-6-intepreting-the-results">
+<h2>Part 6: intepreting the results<a class="headerlink" href="#part-6-intepreting-the-results" title="Permalink to this headline">#</a></h2>
+<p>Take a look at your final <code class="docutils literal notranslate"><span class="pre">nodes</span></code> list. How does the tree your created match what we saw in class (Lesson 22)? Specifically, does the cow get placed correctly?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nodes</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extra-credit-taking-an-weighted-average">
+<h2>Extra credit: Taking an weighted average<a class="headerlink" href="#extra-credit-taking-an-weighted-average" title="Permalink to this headline">#</a></h2>
+<p>The way we’ve written the code so far is not fully correct as we should take a <em>weighted average</em> when updating the differences, weighting by the number of organisms in the given nodes. This is actually a fairly difficult problem since a node like <code class="docutils literal notranslate"><span class="pre">('cow',</span> <span class="pre">('human',</span> <span class="pre">'gorilla')</span></code> has three organisms in it, but has a length of two. To figure out the true number of organisms in a given node, you may want to implement a <em>recursive approach</em> to repeatedly peel back all the layers.</p>
+<p>For extra credit, implement these changes to correctly update the differences based on a weighted average.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -868,6 +865,13 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="12_intro_recursion.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 12: Introduction to recursion</p>
+        </div>
+    </a>
 </div>
             </footer>
         </div>
